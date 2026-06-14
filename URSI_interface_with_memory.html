@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="el">
+<head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>URSI | Urban Resilience & Sustainability Index</title> <style> * { box-sizing: border-box; } body { margin: 0; font-family: Arial, sans-serif; background: #f3f4f6; color: #1f2937; } .container { max-width: 1400px; margin: 0 auto; padding: 24px; } .header-card, .card { background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.06); margin-bottom: 24px; } .header-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; } .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .stat-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 14px; padding: 16px; } .layout { display: grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start; } h1, h2, h3, h4 { margin-top: 0; } .muted { color: #6b7280; font-size: 14px; } .section-card { background: #fff; border-radius: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.06); margin-bottom: 18px; overflow: hidden; border: 1px solid #e5e7eb; } .section-header { padding: 18px 20px; color: white; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; } .section-body { padding: 18px 20px 20px; background: #fff; } .badge { display: inline-block; border-radius: 999px; padding: 6px 10px; font-size: 12px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.14); color: white; } .subsection-title { font-size: 13px; font-weight: normal; text-transform: uppercase; letter-spacing: .04em; margin: 16px 0 10px; color: #374151; } .item-row { display: grid; grid-template-columns: 1.5fr 90px 1.4fr; gap: 12px; align-items: center; padding: 12px; border: 1px solid #e5e7eb; border-radius: 14px; margin-bottom: 10px; background: #fafafa; } .item-title { font-size: 14px; line-height: 1.45; } .mini-label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 6px; } input[type="number"], input[type="text"], textarea, input[type="file"] { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #d1d5db; font-size: 14px; background: white; } textarea { resize: vertical; } input[type="checkbox"], input[type="radio"] { transform: scale(1.15); } .center-cell { text-align: center; } .side-sticky { position: sticky; top: 18px; } .summary-dark { background: #111827; color: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; } .score-big { font-size: 40px; font-weight: normal; margin-top: 8px; } .progress { height: 12px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin-top: 8px; } .progress-bar { height: 100%; width: 0%; background: #111827; transition: width .3s ease; } .summary-list { display: grid; gap: 10px; margin-top: 14px; } .summary-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding-bottom: 8px; border-bottom: 1px solid #e5e7eb; } .top-form { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 16px; } .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; } button { background: #111827; color: white; border: none; padding: 12px 18px; border-radius: 12px; cursor: pointer; font-size: 14px; } button.secondary { background: #e5e7eb; color: #111827; } .warn-box { font-size: 13px; background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; padding: 12px; border-radius: 12px; margin-top: 12px; line-height: 1.55; } .interactive-card { border: none; background: transparent; border-radius: 0; padding: 0; margin-bottom: 10px; } .interactive-toggle { display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 12px; font-weight: normal; color: #1f2937; padding: 12px; border: 1px solid #e5e7eb; border-radius: 14px; background: #fafafa; margin-bottom: 10px; } .interactive-body { display: none; margin-top: 14px; } .helper-text { font-size: 13px; color: #6b7280; margin-bottom: 12px; line-height: 1.5; } .auto-score-box { background: #111827; color: white; padding: 12px; border-radius: 12px; margin-top: 12px; font-size: 14px; } .group-heading { font-size: 15px; font-weight: 700; color: #111827; margin: 18px 0 8px 6px; } .credit-guide {
+  position:relative;
+  background:#fafafa;
+  border:1px solid #e5e7eb;
+  color:#1f2937;
+  padding:14px 14px 14px 58px;
+  border-radius:14px;
+  margin:12px 0 18px;
+  font-size:14px;
+  line-height:1.55;
+}
+.credit-guide::before {
+  content:"i";
+  position:absolute;
+  left:16px;
+  top:16px;
+  width:26px;
+  height:26px;
+  border:2px solid #111827;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#111827;
+  line-height:1;
+}
+.credit-guide strong { color:#111827; } .score-hint { color:#64748b; font-size:12px; } .chart-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; } .pie-card { background:#f9fafb; border:1px solid #e5e7eb; border-radius:14px; padding:14px; text-align:center; } .pie { width:118px; height:118px; border-radius:50%; margin:10px auto; background:conic-gradient(#111827 0deg,#e5e7eb 0deg); position:relative; } .pie.total-pie { background:conic-gradient(#2563eb 0deg,#e5e7eb 0deg); } .pie.energy-pie { background:conic-gradient(#2563eb 0deg,#e5e7eb 0deg); } .pie::after { content:""; position:absolute; inset:22px; background:#f9fafb; border-radius:50%; } .chart-legend { display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; color:#6b7280; margin-top:4px; } .energy-segment-legend { display:grid; gap:6px; margin-top:10px; font-size:12px; color:#4b5563; } .energy-segment-row { display:flex; align-items:center; justify-content:space-between; gap:8px; } .energy-segment-name { display:flex; align-items:center; gap:6px; } .legend-ip { background:#b45309; } .legend-nb { background:#16a34a; } .legend-so { background:#dc2626; } .legend-tm { background:#7c3aed; } .legend-wm { background:#06b6d4; } .legend-ec { background:#0284c7; } .legend-wr { background:#f97316; } .legend-dot { width:10px; height:10px; border-radius:999px; display:inline-block; } .legend-total { background:#2563eb; } .legend-energy { background:#2563eb; } .legend-pr { background:#64748b; } .pie-label { font-size:13px; color:#374151; line-height:1.35; } .energy-dashboard { margin-top:16px; padding:16px; border-radius:16px; background:#f8fafc; border:1px solid #e5e7eb; } .energy-dashboard h3 { margin:0 0 8px; font-size:18px; } .energy-score-big { font-size:26px; font-weight:bold; margin:8px 0 4px; } .energy-pill { display:inline-block; font-size:12px; padding:5px 9px; border-radius:999px; background:#111827; color:white; margin-top:6px; } .energy-breakdown { margin-top:12px; display:grid; gap:8px; } .energy-breakdown-row { display:flex; justify-content:space-between; gap:12px; font-size:14px; padding-bottom:8px; border-bottom:1px solid #e5e7eb; } @media (max-width: 1100px) { .layout, .header-grid, .top-form, .item-row { grid-template-columns: 1fr; } .side-sticky { position: static; } .stats-grid { grid-template-columns: 1fr 1fr; } } @media (max-width: 700px) { .stats-grid, .chart-grid { grid-template-columns: 1fr; } } 
+/* ===== URSI Visual Polish: CSS-only update ===== */
+body {
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.08), transparent 28%),
+    radial-gradient(circle at top right, rgba(16,185,129,0.07), transparent 24%),
+    #f4f6f9;
+}
+
+.container {
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+.header-card,
+.card,
+.section-card {
+  border: 1px solid rgba(226,232,240,0.95);
+  box-shadow: 0 10px 28px rgba(15,23,42,0.08);
+}
+
+.header-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+}
+
+h1 {
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.section-card {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 22px 24px;
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0)) !important;
+}
+
+.section-header h2 {
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  padding: 7px 12px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.18);
+}
+
+.section-body {
+  padding: 22px 24px 24px;
+}
+
+.interactive-toggle,
+.item-row,
+.credit-guide,
+.stat-box,
+.pie-card,
+.energy-dashboard {
+  border-color: #dfe6ee;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.035);
+}
+
+.interactive-toggle {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.interactive-toggle:hover {
+  transform: translateY(-1px);
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.07);
+}
+
+.item-row {
+  background: #ffffff;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.item-row:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15,23,42,0.045);
+}
+
+.credit-guide {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-color: #dbe3ec;
+}
+
+.warn-box {
+  background: #fff7ed;
+  border-color: #fdba74;
+  border-radius: 14px;
+}
+
+.auto-score-box,
+.summary-dark,
+button {
+  background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+  box-shadow: 0 6px 18px rgba(15,23,42,0.18);
+}
+
+button {
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15,23,42,0.22);
+}
+
+button.secondary {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e5e7eb 100%);
+  color: #0f172a;
+  box-shadow: none;
+}
+
+input[type="number"],
+input[type="text"],
+textarea,
+input[type="file"] {
+  border-color: #cfd8e3;
+  background: #ffffff;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgba(100,116,139,0.16);
+}
+
+.side-sticky .card {
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+}
+
+.summary-row {
+  padding: 9px 0;
+}
+
+.progress {
+  height: 13px;
+  background: #e2e8f0;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #1e293b 0%, #3b82f6 100%);
+}
+
+.pie-card,
+.energy-dashboard {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.subsection-title {
+  color: #475569;
+  font-weight: 700;
+}
+
+.muted {
+  color: #64748b;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    padding: 18px;
+  }
+}
+
+
+/* ===== Chart visual improvement: CSS-only ===== */
+.chart-grid {
+  gap: 16px;
+}
+
+.pie-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 16px 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #dfe6ee;
+}
+
+.pie-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.pie {
+  width: 128px;
+  height: 128px;
+  margin: 12px auto 8px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow:
+    inset 0 0 0 1px rgba(15,23,42,0.06),
+    0 8px 20px rgba(15,23,42,0.08);
+}
+
+.pie::after {
+  content: "";
+  position: absolute;
+  inset: 25px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(226,232,240,0.95);
+}
+
+.pie-card strong[id$="PieText"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #0f172a;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.energy-segment-legend {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.energy-segment-row {
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.energy-segment-name {
+  color: #475569;
+}
+
+.energy-segment-row strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  box-shadow: 0 0 0 3px rgba(15,23,42,0.04);
+}
+
+.total-pie {
+  background: conic-gradient(#2563eb 0deg, #e5e7eb 0deg);
+}
+
+.energy-pie {
+  background: conic-gradient(#0284c7 0deg, #e5e7eb 0deg);
+}
+
+.energy-dashboard {
+  margin-top: 18px;
+}
+
+.energy-score-big {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: #eef2f7;
+  color: #0f172a;
+}
+
+.energy-pill {
+  margin-left: 8px;
+  vertical-align: middle;
+  background: linear-gradient(135deg, #111827 0%, #334155 100%);
+}
+
+.energy-breakdown-row {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.energy-breakdown-row span {
+  color: #475569;
+}
+
+.energy-breakdown-row strong {
+  color: #0f172a;
+}
+
+@media (max-width: 700px) {
+  .pie {
+    width: 118px;
+    height: 118px;
+  }
+
+  .pie::after {
+    inset: 24px;
+  }
+}
+
+
+/* ===== Bigger premium pie charts ===== */
+.pie-card {
+  padding: 20px 16px;
+}
+
+.pie {
+  width: 158px;
+  height: 158px;
+  margin: 16px auto 10px;
+  border: 1px solid rgba(148,163,184,0.35);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.55),
+    inset 0 -14px 26px rgba(15,23,42,0.08),
+    0 14px 28px rgba(15,23,42,0.12);
+}
+
+.pie::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), transparent 32%),
+    repeating-conic-gradient(rgba(255,255,255,0.16) 0deg 2deg, transparent 2deg 8deg);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+.pie::after {
+  inset: 34px;
+  background:
+    radial-gradient(circle at 35% 25%, #ffffff 0%, #f8fafc 58%, #eef2f7 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(203,213,225,0.9),
+    0 2px 8px rgba(15,23,42,0.06);
+}
+
+.pie-card strong[id$="PieText"] {
+  font-size: 14px;
+  padding: 6px 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.total-pie {
+  background:
+    conic-gradient(#2563eb 0deg, #dbe4ef 0deg);
+}
+
+.energy-pie {
+  background:
+    conic-gradient(#0284c7 0deg, #dbe4ef 0deg);
+}
+
+@media (max-width: 700px) {
+  .pie {
+    width: 138px;
+    height: 138px;
+  }
+
+  .pie::after {
+    inset: 30px;
+  }
+}
+
+
+/* ===== Redesigned Energy & Emissions Dashboard ===== */
+.energy-dashboard {
+  margin-top: 20px;
+  padding: 24px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(37,99,235,0.07), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+}
+
+.energy-dashboard h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.energy-dashboard .muted {
+  color: #64748b;
+  line-height: 1.55;
+}
+
+.energy-top-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 18px 0 22px;
+}
+
+.energy-score-card {
+  min-width: 130px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  border: 1px solid #d6e4f7;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.75);
+}
+
+.energy-score-big {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #1e3a8a;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.energy-score-caption {
+  display: block;
+  margin-top: 8px;
+  color: #1e3a8a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.energy-pill {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #111827 0%, #312e81 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.18);
+}
+
+.energy-breakdown {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.energy-breakdown-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 92px;
+  padding: 18px 18px 18px 22px;
+  border-radius: 18px;
+  border: 1px solid #dbe3ee;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.energy-breakdown-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  border-radius: 18px 0 0 18px;
+}
+
+.energy-breakdown-row.direct-row {
+  background: linear-gradient(180deg, #fbfffc 0%, #f2fbf5 100%);
+  border-color: #cfe8d6;
+}
+
+.energy-breakdown-row.direct-row::before {
+  background: #16a34a;
+}
+
+.energy-breakdown-row.indirect-row {
+  background: linear-gradient(180deg, #fdfbff 0%, #f6f1ff 100%);
+  border-color: #ddd2f5;
+}
+
+.energy-breakdown-row.indirect-row::before {
+  background: #6d28d9;
+}
+
+.energy-breakdown-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.energy-breakdown-title {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.direct-row .energy-breakdown-title {
+  color: #15803d;
+}
+
+.indirect-row .energy-breakdown-title {
+  color: #5b21b6;
+}
+
+.energy-breakdown-subtitle {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.energy-breakdown-row strong {
+  min-width: 82px;
+  text-align: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.direct-row strong {
+  color: #15803d;
+  background: #ecfdf3;
+  border: 1px solid #d7f3df;
+}
+
+.indirect-row strong {
+  color: #5b21b6;
+  background: #f3eefe;
+  border: 1px solid #e4d8fb;
+}
+
+.energy-detail-text {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed #cbd5e1;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.energy-detail-text p {
+  margin: 0 0 10px;
+}
+
+.energy-detail-text strong.direct-label {
+  color: #15803d;
+}
+
+.energy-detail-text strong.indirect-label {
+  color: #5b21b6;
+}
+
+.energy-conclusion-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  border: 1px solid #d6e4f7;
+  color: #1e3a8a;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .energy-dashboard {
+    padding: 18px;
+  }
+
+  .energy-breakdown-row {
+    grid-template-columns: 1fr;
+  }
+
+  .energy-breakdown-row strong {
+    width: fit-content;
+  }
+}
+
+
+/* ===== IP prerequisite lock ===== */
+.ip-criteria-locked .interactive-toggle {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #f3f4f6;
+}
+
+.ip-criteria-locked .interactive-toggle span:last-child::after {
+  content: "  🔒";
+}
+
+.ip-criteria-locked .interactive-body {
+  display: none !important;
+}
+
+.ip-lock-message {
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+
+/* ===== URSI Local Memory / Saved Assessments ===== */
+.memory-panel {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #dfe6ee;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.035);
+}
+.memory-panel-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.memory-panel-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.memory-panel select,
+.memory-panel input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #cfd8e3;
+  background: #ffffff;
+  font-size: 14px;
+}
+.memory-panel button {
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+.memory-panel .memory-secondary {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e5e7eb 100%);
+  color: #0f172a;
+  box-shadow: none;
+}
+.memory-status {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 12px;
+  min-height: 16px;
+}
+@media (max-width: 900px) {
+  .memory-panel-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head> <body> <div class="container"> <div class="header-card"> <div class="header-grid"> <div> <h1>URSI | Urban Resilience & Sustainability Index</h1> <p class="muted">Δείκτης αστικής ανθεκτικότητας και βιωσιμότητας για την αξιολόγηση πόλεων.</p> <div class="top-form"> <div><label class="mini-label">Όνομα Πόλης</label><input type="text" id="cityName" placeholder="π.χ. Θεσσαλονίκη" /></div> <div><label class="mini-label">Χώρα / Περιφέρεια</label><input type="text" id="regionName" placeholder="π.χ. Ελλάδα" /></div> <div><label class="mini-label">Έτος Αξιολόγησης</label><input type="text" id="assessmentYear" placeholder="π.χ. 2026" /></div> </div> <div style="margin-top:14px;"> <label class="mini-label">Γενικές Σημειώσεις</label> <textarea id="generalNotes" rows="4" placeholder="Παραδοχές, πηγές δεδομένων, παρατηρήσεις, σχόλια..."></textarea> </div> <div class="actions"> <button onclick="calculateDetailedΒαθμολογία()">Υπολογισμός Βαθμολογίας URSI</button> <button class="secondary" onclick="resetForm()">Καθαρισμός</button> <button type="button" onclick="exportPDFReport()">Εξαγωγή PDF Αναφοράς</button> </div> <div class="memory-panel">
+  <div class="memory-panel-title">Αποθηκευμένες αξιολογήσεις</div>
+  <div class="muted">Αποθήκευση και επαναφόρτωση συμπληρωμένων αξιολογήσεων από τον ίδιο browser.</div>
+  <div class="memory-panel-row">
+    <select id="savedAssessmentSelect"><option value="">Δεν υπάρχουν αποθηκευμένες αξιολογήσεις</option></select>
+    <button type="button" onclick="saveCurrentAssessment()">Αποθήκευση</button>
+    <button type="button" class="memory-secondary" onclick="loadSelectedAssessment()">Φόρτωση</button>
+    <button type="button" class="memory-secondary" onclick="deleteSelectedAssessment()">Διαγραφή</button>
+  </div>
+  <div class="memory-panel-row" style="grid-template-columns:auto auto 1fr;">
+    <button type="button" class="memory-secondary" onclick="exportAssessmentJSON()">Εξαγωγή JSON</button>
+    <button type="button" class="memory-secondary" onclick="document.getElementById('assessmentImportFile').click()">Εισαγωγή JSON</button>
+    <input type="file" id="assessmentImportFile" accept="application/json,.json" style="display:none" onchange="importAssessmentJSON(event)">
+  </div>
+  <div class="memory-status" id="memoryStatus">Η τελευταία αλλαγή αποθηκεύεται αυτόματα τοπικά ως προσωρινό αντίγραφο.</div>
+</div> </div> <div class="stats-grid"> <div class="stat-box"><div class="muted">Συνολική Βαθμολογία</div><div id="headerΒαθμολογία" style="font-size:28px; font-weight:bold;">0 / 110</div></div> <div class="stat-box"><div class="muted">Πιστοποίηση</div><div id="headerRating" style="font-size:28px; font-weight:bold;">-</div></div> <div class="stat-box"><div class="muted">Ολοκληρωμένα Υποχρεωτικά</div><div id="headerPrereqs" style="font-size:28px; font-weight:bold;">0</div></div> <div class="stat-box"><div class="muted">Συμπληρωμένα Κριτήρια</div><div id="headerCredits" style="font-size:28px; font-weight:bold;">0</div></div> </div> </div> </div> <div class="layout"> <div id="sectionsContainer"></div> <div class="side-sticky"> <div class="card"> <div class="summary-dark"> <div style="color:#cbd5e1;">Συνολική Βαθμολογία URSI</div> <div class="score-big"><span id="totalΒαθμολογία">0</span> / 110</div> <div style="margin-top:10px; color:#cbd5e1;">Πιστοποίηση: <strong id="finalRating">-</strong></div> </div> <div> <div class="muted">Πρόοδος</div> <div class="progress"><div class="progress-bar" id="progressBar"></div></div> </div> <div class="chart-grid"> <div class="pie-card"> <div class="pie-label">Συνολική βαθμολογία</div> <div class="pie total-pie" id="totalPie"></div> <strong id="totalPieText">0%</strong> <div class="energy-segment-legend" style="margin-top:10px;"> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-ip"></span>IP</span><strong id="totalLegendIP">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-nb"></span>NB</span><strong id="totalLegendNB">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-so"></span>SO</span><strong id="totalLegendSO">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-tm"></span>TM</span><strong id="totalLegendTM">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-wm"></span>WM</span><strong id="totalLegendWM">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-ec"></span>EC</span><strong id="totalLegendEC">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-wr"></span>WR</span><strong id="totalLegendWR">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-pr"></span>PR</span><strong id="totalLegendPR">0</strong></div> </div> </div> <div class="pie-card"> <div class="pie-label">Ενέργεια & Εκπομπές</div> <div class="pie energy-pie" id="energyPie"></div> <strong id="energyPieText">0 / 52</strong> <div class="energy-segment-legend" id="energySegmentLegend"> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-ip"></span>Ολοκληρωμένος Σχεδιασμός (IP)</span><strong id="energyLegendIP">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-nb"></span>Φυσικό/Δομημένο Περιβάλλον (NB)</span><strong id="energyLegendNB">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-so"></span>Κοινωνική Βιωσιμότητα (SO)</span><strong id="energyLegendSO">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-tm"></span>Μεταφορές (TM)</span><strong id="energyLegendTM">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-wm"></span>Νερό (WM)</span><strong id="energyLegendWM">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-ec"></span>Ενέργεια & Άνθρακας (EC)</span><strong id="energyLegendEC">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-wr"></span>Απόβλητα (WR)</span><strong id="energyLegendWR">0</strong></div> <div class="energy-segment-row"><span class="energy-segment-name"><span class="legend-dot legend-pr"></span>Καινοτομία (IN)</span><strong id="energyLegendPR">0</strong></div> </div> </div> </div> <div class="energy-dashboard">
+  <h3>Ενότητα Ενέργειας & Εκπομπών</h3>
+  <div class="muted">
+    Δεύτερη αξιολόγηση που συγκεντρώνει τα ενεργειακά και κλιματικά κριτήρια από όλες τις ενότητες URSI.
+    Η πίτα δείχνει τη συνεισφορά ανά ενότητα, ενώ η ανάλυση παρακάτω χωρίζει τα κριτήρια σε άμεσα και έμμεσα.
+  </div>
+
+  <div class="energy-top-row">
+    <div class="energy-score-card">
+      <div class="energy-score-big"><span id="energyTotalΒαθμολογία">0</span> / 52</div>
+      <span class="energy-score-caption">Συνολική βαθμολογία</span>
+    </div>
+    <span class="energy-pill" id="energyRating">-</span>
+  </div>
+
+  <div class="energy-breakdown">
+    <div class="energy-breakdown-row direct-row">
+      <div class="energy-breakdown-text">
+        <span class="energy-breakdown-title">Άμεσα</span>
+        <span class="energy-breakdown-subtitle">Ενεργειακά και κλιματικά κριτήρια</span>
+      </div>
+      <strong id="directEnergyΒαθμολογία">0 / 27</strong>
+    </div>
+
+    <div class="energy-breakdown-row indirect-row">
+      <div class="energy-breakdown-text">
+        <span class="energy-breakdown-title">Έμμεσα</span>
+        <span class="energy-breakdown-subtitle">Ενεργειακά και κλιματικά κριτήρια</span>
+      </div>
+      <strong id="indirectEnergyΒαθμολογία">0 / 25</strong>
+    </div>
+  </div>
+
+  <div class="energy-detail-text">
+    <p><strong class="direct-label">Άμεσα:</strong> Αποτίμηση Άνθρακα, Σχέδιο Δράσης για το Κλίμα, Αναφορά Δεδομένων Άνθρακα, Επίδοση Άνθρακα, ενεργειακή αποδοτικότητα, ανανεώσιμες πηγές ενέργειας και μεταφορές χαμηλών εκπομπών.</p>
+    <p><strong class="indirect-label">Έμμεσα:</strong> Διαχείριση κινητικότητας, ενεργές μετακινήσεις, αποδοτικότητα νερού, επίδοση αποβλήτων, κυκλικότητα υλικών, συμπαγής αστική ανάπτυξη, μείωση θερμικής νησίδας και δημοτική ηγεσία για άνθρακα και ανθεκτικότητα.</p>
+  </div>
+
+  <div class="energy-conclusion-box" id="energyConclusion">-</div>
+</div> <div class="warn-box" id="prereqWarning">Δεν έχουν ολοκληρωθεί όλα τα υποχρεωτικά στοιχεία.</div> <div class="summary-list"> <div class="summary-row"><span>Ολοκληρωμένος Σχεδιασμός και Ετοιμότητα (IP)</span><strong id="side-IP">0 / 8</strong></div> <div class="summary-row"><span>Φυσικό και Δομημένο Περιβάλλον (NB)</span><strong id="side-NB">0 / 19</strong></div> <div class="summary-row"><span>Κοινωνική Βιωσιμότητα (SO)</span><strong id="side-SO">0 / 14</strong></div> <div class="summary-row"><span>Μεταφορές και Κινητικότητα (TM)</span><strong id="side-TM">0 / 14</strong></div> <div class="summary-row"><span>Διαχείριση Νερού (WM)</span><strong id="side-WM">0 / 12</strong></div> <div class="summary-row"><span>Διαχείριση Ενέργειας και Άνθρακα (EC)</span><strong id="side-EC">0 / 22</strong></div> <div class="summary-row"><span>Μείωση Αποβλήτων και Κυκλικότητα (WR)</span><strong id="side-WR">0 / 11</strong></div> <div class="summary-row"><span>Καινοτομία (IN)</span><strong id="side-PR">0 / 10</strong></div> </div> <div style="margin-top:18px;"> <div class="muted">Πόλη</div> <div id="selectedCity" style="font-weight:bold; margin-top:6px;">-</div> </div> </div> </div> </div> </div> <script>
+const sectionMaximums = { IP:8, NB:19, SO:14, TM:14, WM:12, EC:22, WR:11, PR:10 };
+const sectionMeta = { IP:{title:'Ολοκληρωμένος Σχεδιασμός και Ετοιμότητα (IP)', color:'#b45309', light:'#ffedd5'}, NB:{title:'Φυσικό και Δομημένο Περιβάλλον (NB)', color:'#16a34a', light:'#dcfce7'}, SO:{title:'Κοινωνική Βιωσιμότητα (SO)', color:'#dc2626', light:'#fee2e2'}, TM:{title:'Μεταφορές και Κινητικότητα (TM)', color:'#7c3aed', light:'#ede9fe'}, WM:{title:'Διαχείριση Νερού (WM)', color:'#06b6d4', light:'#cffafe'}, EC:{title:'Διαχείριση Ενέργειας και Άνθρακα (EC)', color:'#0284c7', light:'#e0f2fe'}, WR:{title:'Μείωση Αποβλήτων και Κυκλικότητα (WR)', color:'#f97316', light:'#ffedd5'}, PR:{title:'Καινοτομία (IN)', color:'#64748b', light:'#e2e8f0'}
+}; function sectionCard(key, body){ const m = sectionMeta[key]; return `<div class="section-card"> <div class="section-header" style="background:${m.color};"> <div><h2 style="margin:0; font-size:22px;">${m.title}</h2><div class="muted" style="color:${m.light};">Μέγιστοι βαθμοί: ${sectionMaximums[key]}</div></div> <span class="badge" id="subtotal-${key}">0 / ${sectionMaximums[key]}</span> </div> <div class="section-body">${body}</div> </div>`;
+} function toggleInteractive(id){ const el = document.getElementById(id); if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+} function optionCheck(title, cls, βαθμοί=1){ return `<div class="item-row"><div class="item-title">${title}</div><div class="center-cell"><input type="checkbox" class="${cls}" data-βαθμοί="${βαθμοί}"></div><div>${βαθμοί ? βαθμοί + ' βαθμός' : 'Υποχρεωτικό'}</div></div>`;
+} function radioRow(title, name, value, cls, label){ return `<div class="item-row"><div class="item-title">${title}</div><div class="center-cell"><input type="radio" name="${name}" value="${value}" class="${cls}"></div><div>${label}</div></div>`;
+} function creditDescription(id){ const descriptions = { carbonPerformance: 'Επιλέξτε το εύρος εκπομπών CO₂e ανά κάτοικο που αντιστοιχεί στην πόλη. Οι αριθμοί είναι το βασικό κριτήριο βαθμολόγησης.', energyEfficiency: 'Επιλέξτε τις δράσεις που εφαρμόζει η πόλη για εξοικονόμηση ενέργειας, ενεργειακούς κανονισμούς και μείωση εκπομπών στα κτίρια.', infrastructureEnergy: 'Αξιολογείται η ενεργειακή απόδοση βασικών δημοτικών υποδομών, όπως οδοφωτισμός και συστήματα νερού/λυμάτων.', buildingEnergy: 'Αξιολογείται αν ο δήμος μετρά, ελέγχει και μειώνει την κατανάλωση ενέργειας στα δημοτικά κτίρια.', renewable: 'Αξιολογείται το ποσοστό ηλεκτρικής κατανάλωσης που καλύπτεται από ΑΠΕ και οι πολιτικές καθαρής ενέργειας.', civicCarbon: 'Αξιολογείται αν ο δήμος εφαρμόζει ο ίδιος πολιτικές μείωσης εκπομπών και κλιματικής ανθεκτικότητας στις λειτουργίες του.', transportPerformance: 'Επιλέξτε το επίπεδο βιώσιμης κινητικότητας της πόλης με βάση τη χρήση δημόσιας συγκοινωνίας, περπατήματος, ποδηλάτου και χαμηλών εκπομπών.', waterPerformance: 'Επιλέξτε την επίδοση της πόλης στην κατανάλωση νερού και στην ικανότητα διαχείρισης ομβρίων.', wastePerformance: 'Η αξιολόγηση χωρίζεται σε δύο μέρη: πρώτα την παραγωγή αποβλήτων ανά κάτοικο και έπειτα το ποσοστό εκτροπής αποβλήτων από ταφή ή καύση.', nbPerformance: 'Επιλέξτε το συνολικό επίπεδο επίδοσης της πόλης στο φυσικό και δομημένο περιβάλλον.', heatIsland: 'Αξιολογούνται μέτρα που μειώνουν τις υψηλές αστικές θερμοκρασίες, όπως σκίαση, ανακλαστικά υλικά και πράσινες υποδομές.', compactDevelopment: 'Αξιολογείται αν η πόλη αναπτύσσεται με συμπαγή, μικτή και προσβάσιμη μορφή που μειώνει την ανάγκη για Ι.Χ.', embodiedCarbon: 'Αξιολογούνται πολιτικές που μειώνουν τις εκπομπές άνθρακα από υλικά, κατασκευές, επαναχρήση κτιρίων και ανάκτηση υλικών.', projectPriority: 'Επιλέξτε καινοτόμες πρακτικές, λύσεις ή προσεγγίσεις που δεν καλύπτονται από τα υπάρχοντα κριτήρια, αλλά ενισχύουν τη βιωσιμότητα, την ανθεκτικότητα και την ποιότητα ζωής στην πόλη.' }; return descriptions[id] || 'Επιλέξτε όσα στοιχεία ισχύουν για την πόλη. Η βαθμολογία υπολογίζεται αυτόματα με βάση τα επιλεγμένα κριτήρια και το μέγιστη βαθμολογία.';
+} function interactiveΒαθμολογία(id,title,max,body,scoreId,textId,section){ return `<div class="interactive-card"> <div class="interactive-toggle" onclick="toggleInteractive('${id}')"><span>${title}</span><span>Μέγιστο ${max} ▼</span></div> <div class="interactive-body" id="${id}"> <div class="credit-guide"><strong>Τι αξιολογείται:</strong> ${creditDescription(id)}<br><span class="score-hint">Συμπληρώστε μόνο όσα τεκμηριώνονται από διαθέσιμα στοιχεία, πολιτικές ή αρχεία.</span></div> ${body} <div class="item-row"><div class="item-title">Ανέβασμα αρχείου τεκμηρίωσης</div><div class="center-cell">Τεκμηρίωση</div><div><input type="file"></div></div> <div class="auto-score-box">Αυτόματη βαθμολογία για ${title}: <strong><span id="${textId}">0</span> / ${max}</strong></div> <input type="number" min="0" max="${max}" value="0" class="κριτήριο-input" data-section="${section}" id="${scoreId}" style="display:none;" readonly /> </div> </div>`;
+} function prerequisiteLockHtml(section, name, title, warningId, text){ const dataLabels = { NB: { yes: 'Ναι: υπάρχουν διαθέσιμα και καταγεγραμμένα δεδομένα φυσικού και δομημένου περιβάλλοντος', no: 'Όχι: δεν υπάρχουν επαρκή δεδομένα φυσικού και δομημένου περιβάλλοντος', warning: 'Η ενότητα Φυσικού και Δομημένου Περιβάλλοντος παραμένει κλειδωμένη μέχρι να υποβληθούν τα απαραίτητα δεδομένα για το φυσικό περιβάλλον, το δομημένο περιβάλλον και τη χρήση γης.' }, TM: { yes: 'Ναι: υπάρχουν διαθέσιμα και καταγεγραμμένα δεδομένα μεταφορών', no: 'Όχι: δεν υπάρχουν επαρκή δεδομένα μεταφορών', warning: 'Η ενότητα Μεταφορών και Κινητικότητας παραμένει κλειδωμένη μέχρι να υποβληθούν τα απαραίτητα δεδομένα μεταφορών.' }, WM: { yes: 'Ναι: υπάρχουν διαθέσιμα και καταγεγραμμένα δεδομένα νερού', no: 'Όχι: δεν υπάρχουν επαρκή δεδομένα νερού', warning: 'Η ενότητα Διαχείρισης Νερού παραμένει κλειδωμένη μέχρι να υποβληθούν τα απαραίτητα δεδομένα νερού.' }, EC: { yes: 'Ναι: υπάρχουν διαθέσιμα και καταγεγραμμένα δεδομένα ενέργειας και εκπομπών', no: 'Όχι: δεν υπάρχουν επαρκή δεδομένα ενέργειας και εκπομπών', warning: 'Η ενότητα Διαχείρισης Ενέργειας και Άνθρακα παραμένει κλειδωμένη μέχρι να υποβληθούν τα απαραίτητα δεδομένα ενέργειας και εκπομπών.' } }; const labels = dataLabels[section] || { yes: 'Ναι: υπάρχουν διαθέσιμα και καταγεγραμμένα δεδομένα', no: 'Όχι: δεν υπάρχουν επαρκή δεδομένα', warning: `Η ενότητα ${sectionMeta[section].title} παραμένει κλειδωμένη μέχρι να υποβληθούν τα απαραίτητα δεδομένα.` }; return `<div class="subsection-title">Υποχρεωτικό</div> <div class="interactive-card"> <div class="interactive-toggle"><span>${title}</span><span>🔒 Υποχρεωτικό</span></div> <div class="section-body" style="padding:14px 12px 0;"> <div class="credit-guide">${text}</div> ${radioRow(labels.yes, name, 'yes', '', '')} ${radioRow(labels.no, name, 'no', '', '')} <div class="warn-box" id="${warningId}">${labels.warning}</div> </div> </div>`;
+} function renderSections(){ const c = document.getElementById('sectionsContainer'); c.innerHTML = ''; c.innerHTML += sectionCard('IP', ipHtml()); c.innerHTML += sectionCard('NB', nbHtml()); c.innerHTML += sectionCard('SO', socialHtml()); c.innerHTML += sectionCard('TM', tmHtml()); c.innerHTML += sectionCard('WM', wmHtml()); c.innerHTML += sectionCard('EC', ecHtml()); c.innerHTML += sectionCard('WR', wrHtml()); c.innerHTML += sectionCard('PR', prHtml()); bindEvents(); ['nb','tm','wm','ec','wr'].forEach(k => toggleCategoryLock(k)); calculateDetailedΒαθμολογία(); setTimeout(applyIPPrerequisiteLock, 0);
+} function ipHtml(){ return `<div class="subsection-title">Υποχρεωτικά</div> <div class="credit-guide"><strong>Τι αξιολογείται:</strong> Τα παρακάτω στοιχεία αποτελούν βασικές υποχρεωτικές αξιολογήσεις για την ενεργοποίηση της ενότητας Ολοκληρωμένος Σχεδιασμός και Ετοιμότητα (IP). Η πόλη πρέπει να διαθέτει τεκμηριωμένες αξιολογήσεις οικοσυστήματος, ανθεκτικότητας, ανθρώπινου αντικτύπου και εκπομπών άνθρακα.<br><span class="score-hint">Συμπληρώστε μόνο στοιχεία που υποστηρίζονται από διαθέσιμα δεδομένα, σχέδια ή επίσημα έγγραφα.</span></div> ${['Αξιολόγηση Οικοσυστήματος','Αξιολόγηση Ανθεκτικότητας','Αξιολόγηση Ανθρώπινου Αντικτύπου','Αξιολόγηση Άνθρακα'].map((t,i)=>` <div class="item-row"><div class="item-title">${t}</div><div class="center-cell">Υποχρεωτικό</div><div><input type="checkbox" class="prereq-check"></div></div>`).join('')} <div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('ipLeadership','Ολοκληρωμένος Σχεδιασμός και Ηγεσία',1, optionCheck('Συντονισμός φορέων και οργανωμένο σχέδιο δράσης','ip-leadership-check',1),'ipLeadershipΒαθμολογία','ipLeadershipText','IP')} ${interactiveΒαθμολογία('ipParticipation','Συμμετοχικός Σχεδιασμός και Συμμετοχή',1, optionCheck('Συμμετοχή της τοπικής κοινότητας στη λήψη αποφάσεων, συμβουλευτικές επιτροπές ή συμπεριληπτική διαδικασία σχεδιασμού','ip-participation-check',1),'ipParticipationΒαθμολογία','ipParticipationText','IP')} ${interactiveΒαθμολογία('climateActionPlan','Σχέδιο Δράσης για το Κλίμα',1, ['Καθορισμός ορίων και περιοχής εφαρμογής της πόλης','Στόχος μείωσης εκπομπών άνθρακα','Απογραφή βάσης άνθρακα άμεσες και έμμεσες εκπομπές άνθρακα','Πρωτοβουλίες ανά τομέα με χρονοδιάγραμμα, προϋπολογισμό και στελέχωση','Παρακολούθηση, αξιολόγηση, αναφορά και συμμετοχή ενδιαφερόμενων μερών'].map(t=>optionCheck(t,'climate-check',1)).join(''), 'climateΒαθμολογία','climateAutoText','IP')} ${interactiveΒαθμολογία('ipResiliencePlan','Σχέδιο Ανθεκτικότητας',1, optionCheck('Οργανωμένο σχέδιο εφαρμογής με στόχους, δράσεις και χρηματοδότηση','ip-resilience-plan-check',1),'ipResiliencePlanΒαθμολογία','ipResiliencePlanText','IP')} ${interactiveΒαθμολογία('ipEnhanced','Ενισχυμένη Ανθεκτικότητα',4, optionCheck('Μείωση εμφάνισης σημαντικών κινδύνων','ip-enhanced-check',2)+ optionCheck('Προστασία ευάλωτων κοινωνικών ομάδων ή κρίσιμων υποδομών','ip-enhanced-check',2)+ optionCheck('Σχεδιασμός ετοιμότητας, καταφύγια, συστήματα προειδοποίησης και συνέχεια λειτουργίας','ip-enhanced-check',2), 'ipEnhancedΒαθμολογία','ipEnhancedText','IP')}`;
+} function nbHtml(){ return prerequisiteLockHtml('NB','nbΠροαπαιτούμενο','Αναφορά Δεδομένων Φυσικού και Δομημένου Περιβάλλοντος','nbLockedWarning','<strong>Τι αξιολογείται:</strong> Η ενότητα ενεργοποιείται μόνο αν υπάρχουν βασικά δεδομένα για το φυσικό και δομημένο περιβάλλον της πόλης.<br>Απαιτούνται στοιχεία για το φυσικό περιβάλλον και τα οικοσυστήματα, το δομημένο περιβάλλον και τους δημόσιους χώρους, τη χρήση γης και την αστική ανάπτυξη, καθώς και βασικούς περιβαλλοντικούς δείκτες.')+ `<div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('nbPerformance','Επίδοση Φυσικού και Δομημένου Περιβάλλοντος',4, radioRow('Βασικό επίπεδο περιβαλλοντικής επίδοσης (περιορισμένες δράσεις και βασική συμμόρφωση)','nbPerformanceOption','1','nb-control nb-performance-option','1 βαθμός')+ radioRow('Ικανοποιητικό επίπεδο περιβαλλοντικής επίδοσης (οργανωμένες πολιτικές και μερική εφαρμογή μέτρων)','nbPerformanceOption','2','nb-control nb-performance-option','2 βαθμοί')+ radioRow('Υψηλή περιβαλλοντική επίδοση (εκτεταμένες δράσεις και αποδεδειγμένη βελτίωση)','nbPerformanceOption','3','nb-control nb-performance-option','3 βαθμοί')+ radioRow('Πολύ υψηλή περιβαλλοντική επίδοση (ολοκληρωμένη στρατηγική και υψηλή περιβαλλοντική απόδοση)','nbPerformanceOption','4','nb-control nb-performance-option','4 βαθμοί'), 'nbPerformanceΒαθμολογία','nbPerformanceText','NB')} ${interactiveΒαθμολογία('heatIsland','Μείωση Φαινομένου Αστικής Θερμικής Νησίδας',2, optionCheck('Ψυχρές στέγες, ανακλαστικά υλικά ή σκίαση δημόσιων χώρων','nb-control heat-island-check',1)+ optionCheck('Δενδροκάλυψη ή πράσινες υποδομές','nb-control heat-island-check',1)+ optionCheck('Παρακολούθηση θερμοκρασιών και στρατηγική προστασίας από τη ζέστη','nb-control heat-island-check',1), 'heatIslandΒαθμολογία','heatIslandText','NB')} ${interactiveΒαθμολογία('naturalResources','Προστασία και Αποκατάσταση Φυσικών Πόρων',2, optionCheck('Προστασία οικοσυστημάτων και βιοποικιλότητας','nb-control natural-resource-check',1)+ optionCheck('Αποκατάσταση φυσικών περιοχών και οικολογικών διαδρόμων','nb-control natural-resource-check',1)+ optionCheck('Περιορισμός αστικής διάχυσης και προστασία ευαίσθητων οικοτόπων','nb-control natural-resource-check',1), 'naturalResourcesΒαθμολογία','naturalResourcesText','NB')} ${interactiveΒαθμολογία('environmentalQuality','Διαχείριση Περιβαλλοντικής Ποιότητας',3, optionCheck('Παρακολούθηση ποιότητας αέρα, θορύβου και περιβάλλοντος','nb-control environmental-quality-check',1)+ optionCheck('Μείωση ρύπανσης και διαχείριση εκπομπών','nb-control environmental-quality-check',1)+ optionCheck('Πρόληψη και αντιμετώπιση περιβαλλοντικής ρύπανσης','nb-control environmental-quality-check',1)+ optionCheck('Δημόσια διαθέσιμα περιβαλλοντικά δεδομένα και αναφορές','nb-control environmental-quality-check',1), 'environmentalQualityΒαθμολογία','environmentalQualityText','NB')} ${interactiveΒαθμολογία('openSpaces','Προσβάσιμοι και Συμπεριληπτικοί Δημόσιοι Χώροι',2, optionCheck('Επαρκής πρόσβαση κατοίκων σε πάρκα, πλατείες και χώρους πρασίνου','nb-control open-space-check',1)+ optionCheck('Ασφαλείς, προσβάσιμοι και συμπεριληπτικοί δημόσιοι χώροι για όλους τους πολίτες','nb-control open-space-check',1), 'openSpacesΒαθμολογία','openSpacesText','NB')} ${interactiveΒαθμολογία('compactDevelopment','Βιώσιμη και Προσβάσιμη Αστική Ανάπτυξη',3, optionCheck('Συμπαγής αστική ανάπτυξη και περιοχές μικτών χρήσεων','nb-control compact-development-check',1)+ optionCheck('Ανάπτυξη κοντά σε δημόσια συγκοινωνία','nb-control compact-development-check',1)+ optionCheck('Βελτίωση δυνατότητας πεζής μετακίνησης και μείωση εξάρτησης από Ι.Χ.','nb-control compact-development-check',1)+ optionCheck('Περιορισμός άναρχης αστικής επέκτασης','nb-control compact-development-check',1), 'compactDevelopmentΒαθμολογία','compactDevelopmentText','NB')} ${interactiveΒαθμολογία('landUse','Πολιτικές Χρήσεων Γης και Αστικού Σχεδιασμού',1, optionCheck('Πολιτικές χρήσεων γης που υποστηρίζουν βιώσιμη ανάπτυξη και ανθεκτικότητα','nb-control land-use-check',1)+ optionCheck('Προσαρμογή στην κλιματική αλλαγή ή προστασία οικοσυστημάτων στις πολιτικές σχεδιασμού','nb-control land-use-check',1), 'landUseΒαθμολογία','landUseText','NB')} ${interactiveΒαθμολογία('environmentalStewardship','Δημοτική Ηγεσία για Περιβαλλοντική Διαχείριση',2, optionCheck('Συμμετοχικός περιβαλλοντικός σχεδιασμός με πολίτες και φορείς','nb-control stewardship-check',1)+ optionCheck('Εκστρατείες ενημέρωσης και περιβαλλοντικής ευαισθητοποίησης','nb-control stewardship-check',1)+ optionCheck('Μακροπρόθεσμη στρατηγική περιβαλλοντικής διακυβέρνησης','nb-control stewardship-check',1), 'environmentalStewardshipΒαθμολογία','environmentalStewardshipText','NB')}`;
+} function socialHtml(){ return `<div class="subsection-title">Κριτήρια</div>`+ grouped('housing','Προσιτότητα Κατοικίας',2,'SO','housingΒαθμολογία','housingText','social-control housing-check', ['Πολιτικές υποστήριξης προσιτής κατοικίας','Το κόστος κατοικίας και μετακίνησης παραμένει κάτω από το 45% του εισοδήματος','Ανάπτυξη νέων κατοικιών προσιτού κόστους','Προστασία και διατήρηση προσιτών ενοικιαζόμενων κατοικιών'])+ grouped('socialInfra','Κοινωνικές Υποδομές και Υπηρεσίες',2,'SO','socialInfraΒαθμολογία','socialInfraText','social-control social-infra-check', ['Πρόσβαση των πολιτών σε βασικές υπηρεσίες','Διαθέσιμοι κοινόχρηστοι και κοινοτικοί χώροι','Δράσεις ενίσχυσης ασφάλειας της κοινότητας','Υπηρεσίες υποστήριξης ευάλωτων κοινωνικών ομάδων','Πρόσβαση σε υγιεινή και ποιοτική διατροφή'])+ grouped('environmentalJustice','Περιβαλλοντική Δικαιοσύνη',2,'SO','environmentalΒαθμολογία','environmentalText','social-control environmental-check', ['Μείωση περιβαλλοντικών κινδύνων για ευάλωτες περιοχές','Παρεμβάσεις μετριασμού περιβαλλοντικών επιπτώσεων','Πολιτικές αποφυγής κοινωνικού και οικιστικού εκτοπισμού','Συμμετοχή της τοπικής κοινότητας στη λήψη αποφάσεων'])+ grouped('health','Δημόσια Υγεία',2,'SO','healthΒαθμολογία','healthText','social-control health-check', ['Βελτίωση βασικών δεικτών δημόσιας υγείας','Μείωση κοινωνικών ανισοτήτων στην υγεία','Δημόσια διαθέσιμα δεδομένα και δείκτες υγείας'])+ grouped('economic','Οικονομική Ανάπτυξη και Ευκαιρίες',2,'SO','economicΒαθμολογία','economicText','social-control economic-check', ['Πολιτικές ενίσχυσης εισοδηματικής ισότητας (στοχευμένες πολιτικές ή προγράμματα που μειώνουν τις εισοδηματικές ανισότητες)','Πολιτικές δίκαιης και ασφαλούς απασχόλησης (προώθηση ποιοτικών θέσεων εργασίας, ίσων ευκαιριών και προστασίας εργαζομένων)','Υποστήριξη τοπικών επιχειρήσεων και επαγγελματικής κατάρτισης (δράσεις ενίσχυσης μικρών επιχειρήσεων και προγραμμάτων ανάπτυξης δεξιοτήτων)','Προγράμματα χρηματοοικονομικής εκπαίδευσης (δράσεις ενημέρωσης για οικονομική διαχείριση, αποταμίευση και υπεύθυνο δανεισμό)'])+ grouped('education','Εκπαιδευτικές Ευκαιρίες και Επίδοση',2,'SO','educationΒαθμολογία','educationText','social-control education-check', ['Προσχολική εκπαίδευση (διαθεσιμότητα και πρόσβαση όλων των παιδιών σε ποιοτικές δομές προσχολικής αγωγής)','Εκπαιδευτική επίδοση σε ανάγνωση και μαθηματικά (παρακολούθηση βασικών μαθησιακών δεικτών σε σχέση με εθνικούς ή διεθνείς στόχους)','Ποσοστά αποφοίτησης και πρόσβασης στην εκπαίδευση (ολοκλήρωση σπουδών και ισότιμη πρόσβαση στην εκπαίδευση για όλους)','Υπηρεσίες επαγγελματικού προσανατολισμού και σταδιοδρομίας (συμβουλευτική, ενημέρωση και υποστήριξη για μελλοντική εκπαίδευση ή απασχόληση)'])+ grouped('civicSocial','Ηγεσία Δήμου: Σχεδιασμός και Κοινωνική Υποστήριξη',2,'SO','civicSocialΒαθμολογία','civicSocialText','social-control civic-social-check', ['Πολιτικές ισότητας και προστασίας από διακρίσεις (μέτρα που προάγουν ισότητα, ένταξη και προστασία από κάθε μορφή διάκρισης)','Συμμετοχή των κοινοτήτων στη λήψη αποφάσεων (ενεργός συμμετοχή πολιτών και τοπικών κοινοτήτων σε διαδικασίες διαβούλευσης)','Ικανότητα του δήμου για κοινωνική υποστήριξη και διαχείριση (αποτελεσματική παροχή κοινωνικών υπηρεσιών, στήριξη ευάλωτων ομάδων και διαχείριση κρίσεων)']);
+} function tmHtml(){ return prerequisiteLockHtml('TM','tmΠροαπαιτούμενο','Αναφορά Δεδομένων Μεταφορών','tmLockedWarning','<strong>Τι αξιολογείται:</strong> Η ενότητα ενεργοποιείται μόνο αν υπάρχουν βασικά δεδομένα για τις μετακινήσεις και το σύστημα μεταφορών της πόλης.<br>Απαιτούνται στοιχεία για τη δημόσια συγκοινωνία, τις ενεργές μετακινήσεις, την οδική ασφάλεια, την κατανομή μέσων μετακίνησης και τη συνολική κινητικότητα.<br><span class="score-hint">Αν δεν υπάρχουν επαρκή δεδομένα μεταφορών, η ενότητα Μεταφορών και Κινητικότητας δεν μπορεί να αξιολογηθεί.</span>')+ `<div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('transportPerformance','Επίδοση Μεταφορών',4, radioRow('Βασική επίδοση σε βιώσιμες μετακινήσεις (περιορισμένη χρήση δημόσιας συγκοινωνίας, ποδηλάτου ή περπατήματος)','transportPerformanceOption','1','transport-control transport-performance-option','1 βαθμός')+ radioRow('Μέτρια προς υψηλή επίδοση βιώσιμων μετακινήσεων (οργανωμένες πολιτικές και αυξημένη χρήση εναλλακτικών μετακινήσεων)','transportPerformanceOption','2','transport-control transport-performance-option','2 βαθμοί')+ radioRow('Υψηλή χρήση δημόσιας συγκοινωνίας, περπατήματος ή ποδηλάτου (ισχυρή στροφή των κατοίκων σε βιώσιμες μορφές μετακίνησης)','transportPerformanceOption','3','transport-control transport-performance-option','3 βαθμοί')+ radioRow('Πολύ υψηλή επίδοση μετακινήσεων χαμηλών εκπομπών (ολοκληρωμένο και αποδοτικό σύστημα βιώσιμης κινητικότητας)','transportPerformanceOption','4','transport-control transport-performance-option','4 βαθμοί'), 'transportPerformanceΒαθμολογία','transportPerformanceText','TM')} ${grouped('publicTransit','Ασφαλείς και Προσιτές Υπηρεσίες Δημόσιας Συγκοινωνίας',2,'TM','publicTransitΒαθμολογία','publicTransitText','transport-control public-transit-check',['Ασφαλής, αξιόπιστη και οικονομικά προσιτή δημόσια συγκοινωνία (εύκολη πρόσβαση των πολιτών σε βασικές μετακινήσεις)','Μειωμένα κόμιστρα ή κοινωνική τιμολόγηση για ευάλωτες ομάδες (στήριξη φοιτητών, ηλικιωμένων, ανέργων ή ΑμεΑ)','Ασφαλείς και προσβάσιμες στάσεις δημόσιας συγκοινωνίας (υποδομές κατάλληλες για όλους τους πολίτες)'])} ${grouped('lowCarbon','Μεταφορές Χαμηλών Εκπομπών Άνθρακα',2,'TM','lowCarbonΒαθμολογία','lowCarbonText','transport-control low-carbon-check',['Ηλεκτρικά ή χαμηλών εκπομπών οχήματα σε δημόσιους ή δημοτικούς στόλους (λεωφορεία, δημοτικά οχήματα ή υπηρεσιακοί στόλοι)','Δίκτυο φόρτισης ή κίνητρα για καθαρή κινητικότητα (υποδομές φόρτισης και ενίσχυση ηλεκτροκίνησης)','Μείωση εκπομπών από μεταφορές εμπορευμάτων, ταξί, λεωφορεία ή δημοτικούς στόλους (στοχευμένες δράσεις περιορισμού ατμοσφαιρικών ρύπων)'])} ${grouped('mobility','Διαχείριση Κινητικότητας',2,'TM','mobilityΒαθμολογία','mobilityText','transport-control mobility-check',['Ολοκληρωμένο σχέδιο βιώσιμης κινητικότητας (στρατηγική για ασφαλείς και βιώσιμες μετακινήσεις στην πόλη)','Κοινόχρηστα οχήματα, χώροι μετεπιβίβασης ή οργανωμένη διαχείριση στάθμευσης (μείωση κυκλοφορίας και χρήσης Ι.Χ.)','Παρακολούθηση δεικτών κινητικότητας και κατανομής μετακινήσεων (συλλογή και αξιολόγηση δεδομένων μεταφορών)'])} ${grouped('activeTravel','Ενεργές Μετακινήσεις',2,'TM','activeTravelΒαθμολογία','activeTravelText','transport-control active-travel-check',['Ασφαλή πεζοδρόμια, διαβάσεις και προσβάσιμες διαδρομές (βελτίωση μετακίνησης πεζών και ΑμεΑ)','Ποδηλατικό δίκτυο, υποδομές μικροκινητικότητας ή κοινόχρηστα ποδήλατα (ενίσχυση εναλλακτικών τρόπων μετακίνησης)','Μέτρα ήπιας κυκλοφορίας και βελτίωσης οδικής ασφάλειας (περιορισμός ταχυτήτων και προστασία χρηστών δρόμου)'])} ${grouped('civicTransport','Ηγεσία Δήμου: Μεταφορές και Ανθεκτικότητα',2,'TM','civicTransportΒαθμολογία','civicTransportText','transport-control civic-transport-check',['Σχέδιο ανθεκτικότητας του συστήματος μεταφορών (προετοιμασία για ακραία καιρικά φαινόμενα ή κρίσεις)','Ισότιμη πρόσβαση σε μεταφορές για όλες τις κοινωνικές ομάδες (διασφάλιση μετακίνησης χωρίς αποκλεισμούς)','Συμμετοχικός σχεδιασμός μεταφορών με κατοίκους και κοινότητες (συμμετοχή πολιτών στη λήψη αποφάσεων)'])}`;
+} function wmHtml(){ return prerequisiteLockHtml('WM','wmΠροαπαιτούμενο','Αναφορά Δεδομένων Νερού','wmLockedWarning','<strong>Τι αξιολογείται:</strong> Η ενότητα ενεργοποιείται μόνο αν υπάρχουν βασικά δεδομένα για την κατανάλωση, τη διαχείριση και την ανθεκτικότητα του συστήματος νερού της πόλης.<br>Απαιτούνται στοιχεία για κατανάλωση νερού, υποδομές ύδρευσης, διαχείριση ομβρίων και πρόσβαση των πολιτών σε ασφαλές και οικονομικά προσιτό νερό.<br><span class="score-hint">Αν δεν υπάρχουν επαρκή δεδομένα νερού, η ενότητα Διαχείρισης Νερού δεν μπορεί να αξιολογηθεί.</span>')+ `<div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('waterPerformance','Επίδοση Διαχείρισης Νερού',4, radioRow('Μέση ημερήσια κατανάλωση νερού: 380 έως 450 λίτρα ανά κάτοικο','waterConsumptionPerformance','1','water-control water-performance-control','1 βαθμός')+ radioRow('Μέση ημερήσια κατανάλωση νερού: κάτω από 380 λίτρα ανά κάτοικο','waterConsumptionPerformance','2','water-control water-performance-control','2 βαθμοί')+ radioRow('Υποδομές διαχείρισης ομβρίων για έντονες βροχοπτώσεις (φαινόμενο 10ετούς επαναφοράς)','stormwaterDesignPerformance','1','water-control water-performance-control','1 βαθμός')+ radioRow('Υποδομές διαχείρισης ομβρίων για ακραίες βροχοπτώσεις (φαινόμενο 25ετούς επαναφοράς)','stormwaterDesignPerformance','2','water-control water-performance-control','2 βαθμοί'), 'waterPerformanceΒαθμολογία','waterPerformanceText','WM')} ${grouped('waterSupply','Διαχείριση Υδατικών Πόρων',2,'WM','waterSupplyΒαθμολογία','waterSupplyText','water-control water-supply-check',['Ολοκληρωμένο σχέδιο διαχείρισης υδάτινων πόρων (καταγραφή πηγών νερού, ζήτησης, ποιότητας και μελλοντικών αναγκών)','Εκτίμηση επάρκειας παροχής νερού (έλεγχος αν οι διαθέσιμοι υδατικοί πόροι καλύπτουν τη σημερινή και μελλοντική ζήτηση)'])} ${grouped('waterEfficiency','Αποδοτικότητα Νερού και Υποδομές',2,'WM','waterEfficiencyΒαθμολογία','waterEfficiencyText','water-control water-efficiency-check',['Έλεγχος και αξιολόγηση δικτύου ύδρευσης (καταγραφή απωλειών, διαρροών και μη τιμολογούμενου νερού)','Εκσυγχρονισμός υποδομών ύδρευσης (αναβαθμίσεις δικτύων, μετρητών, αντλιών ή συστημάτων παρακολούθησης)','Ανθεκτικότητα υποδομών νερού (προστασία κρίσιμων εγκαταστάσεων από βλάβες, πλημμύρες, ξηρασία ή άλλους κινδύνους)'])} ${grouped('stormwater','Διαχείριση Ομβρίων Υδάτων',2,'WM','stormwaterΒαθμολογία','stormwaterText','water-control stormwater-check',['Πράσινες υποδομές για απορρόφηση και διαχείριση ομβρίων (π.χ. φυτεμένες επιφάνειες, διαπερατά υλικά ή χώροι συγκράτησης νερού)','Σχέδιο αντιμετώπισης έντονων βροχοπτώσεων και πλημμυρών (μέτρα πρόληψης, αποστράγγισης και μείωσης κινδύνου)','Κανονισμοί για τη διαχείριση ομβρίων υδάτων (κανόνες για νέες αναπτύξεις, απορροή, ποιότητα νερού και συντήρηση)'])} ${grouped('waterCivic','Ανθεκτικότητα και Πρόσβαση στο Νερό',2,'WM','waterCivicΒαθμολογία','waterCivicText','water-control water-civic-check',['Ενημέρωση πολιτών για εξοικονόμηση και σωστή χρήση νερού (εκστρατείες, οδηγίες ή προγράμματα μείωσης κατανάλωσης)','Πρόσβαση όλων των πολιτών σε οικονομικά προσιτό νερό (μέτρα στήριξης για ευάλωτα νοικοκυριά ή χαμηλά εισοδήματα)','Σχέδιο παροχής νερού σε περιπτώσεις έκτακτης ανάγκης (διανομή, εναλλακτικές πηγές και ενημέρωση πολιτών σε κρίσεις)'])}`;
+} function ecHtml(){ return prerequisiteLockHtml('EC','ecΠροαπαιτούμενο','Αναφορά Δεδομένων Ενέργειας και Εκπομπών','ecLockedWarning','<strong>Τι αξιολογείται:</strong> Η ενότητα ενεργοποιείται μόνο αν υπάρχουν βασικά δεδομένα για την κατανάλωση ενέργειας και τις εκπομπές άνθρακα της πόλης.<br>Απαιτούνται στοιχεία για εκπομπές CO₂e, ενεργειακή κατανάλωση κτιρίων και υποδομών, δημοτικές λειτουργίες και χρήση ανανεώσιμων πηγών ενέργειας.<br><span class="score-hint">Αν δεν υπάρχουν επαρκή δεδομένα ενέργειας και εκπομπών, η ενότητα Διαχείρισης Ενέργειας και Άνθρακα δεν μπορεί να αξιολογηθεί.</span>')+ `<div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('carbonPerformance','Επίδοση Άνθρακα',4, radioRow('Εκπομπές άνθρακα: πάνω από 9.5 τόνους CO₂e ανά κάτοικο','carbonPerformanceOption','0','carbon-performance-option','0 βαθμοί')+ radioRow('Εκπομπές άνθρακα: 8.1 έως 9.5 τόνους CO₂e ανά κάτοικο','carbonPerformanceOption','1','carbon-performance-option','1 βαθμός')+ radioRow('Εκπομπές άνθρακα: 6.1 έως 8.0 τόνους CO₂e ανά κάτοικο','carbonPerformanceOption','2','carbon-performance-option','2 βαθμοί')+ radioRow('Εκπομπές άνθρακα: 4.1 έως 6.0 τόνους CO₂e ανά κάτοικο','carbonPerformanceOption','3','carbon-performance-option','3 βαθμοί')+ radioRow('Εκπομπές άνθρακα: κάτω από 4 τόνους CO₂e ανά κάτοικο','carbonPerformanceOption','4','carbon-performance-option','4 βαθμοί'), 'carbonPerformanceΒαθμολογία','carbonPerformanceText','EC')} ${grouped('energyEfficiency','Ενεργειακή Απόδοση και Απανθρακοποίηση',5,'EC','energyEfficiencyΒαθμολογία','energyEfficiencyText','energy-efficiency-control energy-efficiency-check',['Εκπαίδευση προσωπικού και επαγγελματιών σε ενεργειακούς κανονισμούς (κατανόηση και εφαρμογή απαιτήσεων ενεργειακής απόδοσης)','Ενημέρωση πολιτών για εξοικονόμηση και σωστή χρήση νερού (εκστρατείες, οδηγίες ή προγράμματα μείωσης κατανάλωσης) και επιχειρήσεων για ενεργειακή απόδοση','Κέντρο υποστήριξης για ενεργειακές αναβαθμίσεις (παροχή πληροφόρησης, καθοδήγησης ή τεχνικής βοήθειας)','Πρόγραμμα βελτίωσης ενεργειακής απόδοσης κτιρίων (στοχευμένες δράσεις σε κατοικίες, δημόσια ή ιδιωτικά κτίρια)','Παροχή χρηματοδότησης για ενεργειακή αναβάθμιση κτιρίων και υποδομών (οικονομική στήριξη για έργα εξοικονόμησης ενέργειας)','Ενεργειακά προγράμματα για νοικοκυριά χαμηλού εισοδήματος (μείωση ενεργειακού κόστους και ενεργειακής φτώχειας)','Δημοσιοποίηση ενεργειακών δεδομένων μεγάλων κτιρίων (διαφάνεια στην κατανάλωση και στην ενεργειακή επίδοση)','Στρατηγικό σχέδιο μείωσης εκπομπών άνθρακα (μακροπρόθεσμος σχεδιασμός απανθρακοποίησης)','Σύγχρονος ενεργειακός κανονισμός για κτίρια (υψηλότερες απαιτήσεις ενεργειακής απόδοσης σε νέες κατασκευές ή ανακαινίσεις)','Νέα κτίρια με χαμηλές εκπομπές άνθρακα (σχεδιασμός με περιορισμένη χρήση ορυκτών καυσίμων και χαμηλό ενεργειακό αποτύπωμα)'])} ${interactiveΒαθμολογία('infrastructureEnergy','Ενεργειακή Απόδοση Υποδομών',4, optionCheck('Δημοτικός οδοφωτισμός με απόδοση ≥100 lm/W (χρήση αποδοτικών φωτιστικών, όπως LED)','infrastructure-control infrastructure-check',1)+ optionCheck('Μηνιαία παρακολούθηση και δημοσιοποίηση ενέργειας και εκπομπών για νερό και λύματα (έλεγχος της ενεργειακής επίδοσης των υποδομών)','infrastructure-control infrastructure-check',1)+ optionCheck('Ενεργειακός έλεγχος συστημάτων νερού και λυμάτων (εντοπισμός απωλειών, υπερκατανάλωσης και δυνατοτήτων βελτίωσης)','infrastructure-control infrastructure-check',2)+ radioRow('Μείωση ≥5% στην ενεργειακή κατανάλωση ή στις εκπομπές άνθρακα των συστημάτων ύδρευσης και αποχέτευσης','infrastructureReduction','1','infrastructure-control infrastructure-radio','1 βαθμός')+ radioRow('Μείωση ≥10% στην ενεργειακή κατανάλωση ή στις εκπομπές άνθρακα των συστημάτων ύδρευσης και αποχέτευσης','infrastructureReduction','2','infrastructure-control infrastructure-radio','2 βαθμοί')+ radioRow('Μείωση ≥15% στην ενεργειακή κατανάλωση ή στις εκπομπές άνθρακα των συστημάτων ύδρευσης και αποχέτευσης','infrastructureReduction','3','infrastructure-control infrastructure-radio','3 βαθμοί'), 'infrastructureEnergyΒαθμολογία','infrastructureEnergyText','EC')} ${interactiveΒαθμολογία('buildingEnergy','Διαχείριση Ενέργειας Κτιρίων',4, optionCheck('Παρακολούθηση ενέργειας και εκπομπών άνθρακα δημοτικών κτιρίων (συστηματική καταγραφή κατανάλωσης και εκπομπών)','building-energy-control building-energy-check',1)+ optionCheck('Ενεργειακοί έλεγχοι σε δημοτικά κτίρια (αξιολόγηση ενεργειακής απόδοσης και προτάσεις βελτίωσης)','building-energy-control building-energy-check',1)+ optionCheck('Έλεγχος, ρύθμιση και ενεργειακή βελτιστοποίηση υφιστάμενων κτιρίων (βελτίωση λειτουργίας συστημάτων θέρμανσης, ψύξης και φωτισμού)','building-energy-control building-energy-check',1)+ optionCheck('Στρατηγικά σχέδια μείωσης εκπομπών για δημοτικά κτίρια (πλάνο παρεμβάσεων για σταδιακή μείωση ενεργειακού αποτυπώματος)','building-energy-control building-energy-check',1)+ radioRow('Μείωση ενεργειακής κατανάλωσης δημοτικών κτιρίων ≥8%','buildingEnergyReduction','1','building-energy-control building-energy-radio','1 βαθμός')+ radioRow('Μείωση ενεργειακής κατανάλωσης δημοτικών κτιρίων ≥14%','buildingEnergyReduction','2','building-energy-control building-energy-radio','2 βαθμοί')+ radioRow('Μείωση ενεργειακής κατανάλωσης δημοτικών κτιρίων ≥20%','buildingEnergyReduction','3','building-energy-control building-energy-radio','3 βαθμοί'), 'buildingEnergyΒαθμολογία','buildingEnergyText','EC')} ${interactiveΒαθμολογία('renewable','Ανανεώσιμη Ενέργεια',3, radioRow('Ανανεώσιμες πηγές ενέργειας ≥10% της ηλεκτρικής κατανάλωσης','renewableElectricity','1','renewable-control renewable-radio','1 βαθμός')+ radioRow('Ανανεώσιμες πηγές ενέργειας ≥20% της ηλεκτρικής κατανάλωσης','renewableElectricity','2','renewable-control renewable-radio','2 βαθμοί')+ radioRow('Ανανεώσιμες πηγές ενέργειας ≥30% της ηλεκτρικής κατανάλωσης','renewableElectricity','3','renewable-control renewable-radio','3 βαθμοί')+ optionCheck('Αναφορά ποσοστού ανανεώσιμων πηγών στη συνολική κατανάλωση ενέργειας (ηλεκτρική και θερμική ενέργεια)','renewable-control renewable-check',1)+ optionCheck('Προγράμματα και πολιτικές προώθησης ανανεώσιμων πηγών ενέργειας (δημοτικά έργα, κοινότητες ενέργειας ή συμβάσεις καθαρής ενέργειας)','renewable-control renewable-policy-check',1), 'renewableΒαθμολογία','renewableText','EC')} ${grouped('civicCarbon','Ηγεσία Δήμου: Άνθρακας και Ανθεκτικότητα',2,'EC','civicCarbonΒαθμολογία','civicCarbonText','civic-carbon-control civic-carbon-check',['Απογραφή εκπομπών άνθρακα δημοτικών λειτουργιών (καταγραφή εκπομπών από υπηρεσίες, κτίρια και στόλους του δήμου)','Σχέδιο δράσης για το κλίμα στις δημοτικές λειτουργίες (στόχοι και δράσεις μείωσης εκπομπών του ίδιου του δήμου)','Μείωση δημοτικών εκπομπών άνθρακα ≥15% (τεκμηριωμένη μείωση σε σχέση με έτος βάσης)'])}`;
+} function wrHtml(){ return `<div class="subsection-title">Υποχρεωτικό</div> <div class="interactive-card"><div class="interactive-toggle"><span>Αναφορά Δεδομένων Αποβλήτων</span><span>🔒 Υποχρεωτικό</span></div> <div class="section-body" style="padding:14px 12px 0;"> ${optionCheck('Πλήρης καταγραφή παραγωγής δημοτικών στερεών αποβλήτων','wr-prereq-control',0).replace('data-βαθμοί="0"','id="wrGenerationCheck" data-βαθμοί="0"')} ${optionCheck('Πλήρης καταγραφή εκτροπής αποβλήτων','wr-prereq-control',0).replace('data-βαθμοί="0"','id="wrDiversionCheck" data-βαθμοί="0"')} <div class="credit-guide" id="wrLockedWarning"><div><strong>Τι αξιολογείται:</strong> Η ενότητα ενεργοποιείται μόνο αν υπάρχουν βασικά δεδομένα για την παραγωγή, συλλογή και διαχείριση αποβλήτων της πόλης.<br>Απαιτούνται στοιχεία για δημοτικά στερεά απόβλητα, ανακύκλωση, εκτροπή αποβλήτων από ταφή ή καύση και δράσεις κυκλικής οικονομίας.<br><span class="score-hint">Αν δεν υπάρχουν επαρκή δεδομένα αποβλήτων, η ενότητα Μείωσης Αποβλήτων και Κυκλικότητας δεν μπορεί να αξιολογηθεί.</span></div></div> </div></div> <div class="subsection-title">Κριτήρια</div> ${interactiveΒαθμολογία('wastePerformance','Επίδοση Αποβλήτων',4, radioRow('Παραγωγή αποβλήτων: 1.5–2 τόνοι/έτος ανά κάτοικο','wasteGenerationPerformance','1','waste-control waste-performance-control','1 βαθμός')+ radioRow('Παραγωγή αποβλήτων: πάνω από 2 τόνοι/έτος ανά κάτοικο','wasteGenerationPerformance','2','waste-control waste-performance-control','2 βαθμοί')+ radioRow('Εκτροπή αποβλήτων από ταφή ή καύση: 30–50%','wasteDiversionPerformance','1','waste-control waste-performance-control','1 βαθμός')+ radioRow('Εκτροπή αποβλήτων από ταφή ή καύση: πάνω από 51%','wasteDiversionPerformance','2','waste-control waste-performance-control','2 βαθμοί'), 'wastePerformanceΒαθμολογία','wastePerformanceText','WR')} ${grouped('specialOrganic','Διαχείριση Ειδικών και Οργανικών Ρευμάτων Αποβλήτων',2,'WR','specialOrganicWasteΒαθμολογία','specialOrganicWasteText','waste-control special-organic-check',['Καταγραφή και διαχείριση ειδικών ρευμάτων αποβλήτων (ηλεκτρικές συσκευές, μπαταρίες, επικίνδυνα ή ογκώδη απόβλητα)','Προγράμματα διαχείρισης οργανικών αποβλήτων (κομποστοποίηση ή ξεχωριστή συλλογή βιοαποβλήτων)'])} ${interactiveΒαθμολογία('embodiedCarbon','Μείωση Εκπομπών Άνθρακα από Υλικά και Κατασκευές',2, radioRow('Υπάρχουν πολιτικές για μείωση εκπομπών άνθρακα από κατασκευαστικά υλικά','embodiedCarbonOption','2','waste-control embodied-carbon-radio','2 βαθμοί')+ radioRow('Πολιτικές επαναχρησιμοποίησης υφιστάμενων κτιρίων','embodiedCarbonOption','2','waste-control embodied-carbon-radio','2 βαθμοί')+ radioRow('Ανάκτηση και επαναχρησιμοποίηση υλικών από κατεδαφίσεις','embodiedCarbonOption','2','waste-control embodied-carbon-radio','2 βαθμοί'), 'embodiedCarbonΒαθμολογία','embodiedCarbonText','WR')} ${interactiveΒαθμολογία('communityReuse','Κοινοτικές Δράσεις Επαναχρησιμοποίησης Υλικών',1, radioRow('Ενημέρωση πολιτών για επαναχρησιμοποίηση και επισκευή προϊόντων (εκστρατείες, οδηγίες ή δράσεις μείωσης αποβλήτων)','communityReuseOption','1','waste-control community-reuse-radio','1 βαθμός')+ radioRow('Υπάρχουν σημεία συλλογής και επαναχρησιμοποίησης υλικών','communityReuseOption','1','waste-control community-reuse-radio','1 βαθμός'), 'communityReuseΒαθμολογία','communityReuseText','WR')} ${grouped('procurement','Δημοτικές Προμήθειες και Ανθεκτικότητα',2,'WR','procurementResilienceΒαθμολογία','procurementResilienceText','waste-control procurement-check',['Ο δήμος εφαρμόζει βιώσιμες προμήθειες και αγορές (κριτήρια περιβαλλοντικής υπευθυνότητας στις προμήθειες)','Υπάρχουν κριτήρια μείωσης ανθρακικού αποτυπώματος στις προμήθειες (επιλογή προϊόντων και υπηρεσιών με χαμηλότερες εκπομπές)','Υπάρχει σχέδιο ανθεκτικότητας για τη διαχείριση αποβλήτων (συνέχεια λειτουργίας σε κρίσεις ή ακραία φαινόμενα)'])}`;
+} function prHtml(){ return `<div class="subsection-title">Κριτήρια</div>`+ grouped('projectPriority','Καινοτομία (IN)',10,'PR','projectPriorityΒαθμολογία','innovationText','project-priority-check', ['Καινοτόμα λύση σε τοπική πρόκληση (π.χ. κυκλοφοριακή συμφόρηση, ρύπανση, αστική θερμότητα)','Ψηφιακή ή τεχνολογική καινοτομία (π.χ. IoT, AI, smart εφαρμογές, ψηφιακά δίδυμα)','Καινοτόμος σχεδιασμός δημόσιου χώρου ή υποδομής (νέες προσεγγίσεις στη λειτουργικότητα ή αισθητική)','Καινοτομία στη συμμετοχή και εμπλοκή πολιτών (νέες μέθοδοι διαβούλευσης, crowdsourcing, co-creation)','Περιβαλλοντική καινοτομία (νέες πρακτικές για μείωση αποβλήτων, ενέργειας, εκπομπών)','Κοινωνική καινοτομία (νέες υπηρεσίες, συμπερίληψη, ισότητα, ευάλωτες ομάδες)','Οικονομική ή επιχειρησιακή καινοτομία (νέα μοντέλα χρηματοδότησης, συμπράξεις, αποδοτικότητα)','Καινοτόμα συνεργασία ή δίκτυο (συνεργασία με φορείς, πανεπιστήμια, startups, ΜΚΟ κ.ά.)','Αναπαραγωγιμότητα και δυνατότητα κλιμάκωσης (δυνατότητα εφαρμογής σε άλλες περιοχές ή πόλεις)','Πειραματική δράση ή πιλοτικό έργο (δοκιμή νέας προσέγγισης με μετρήσιμα αποτελέσματα)']);
+} function grouped(id,title,max,section,scoreId,textId,cls,items){ return interactiveΒαθμολογία(id,title,max,items.map(t=>optionCheck(t,cls,1)).join(''),scoreId,textId,section);
+} function normalizeCredit(input){ const min = Number(input.min || 0), max = Number(input.max || 0); let value = Number(input.value); if (isNaN(value)) value = 0; if (value < min) value = min; if (value > max) value = max; input.value = value; return value;
+} function getRating(total){ if (total >= 80) return 'Πλατινένια'; if (total >= 60) return 'Χρυσή'; if (total >= 50) return 'Ασημένια'; if (total >= 40) return 'Πιστοποιημένη'; return 'Κάτω από το όριο πιστοποίησης';
+} function getΒαθμολογίαValue(id){ const el = document.getElementById(id); return el ? Number(el.value || 0) : 0;
+} function setΒαθμολογία(scoreId,textId,total){ const s = document.getElementById(scoreId), t = document.getElementById(textId); if (s) s.value = total; if (t) t.textContent = total; calculateDetailedΒαθμολογία();
+} function updateBySelector(selector, βαθμολογίαId, textId, max){ let total = 0; const controls = [...document.querySelectorAll(selector)]; controls.forEach(el => { if (el.checked) total += Number(el.dataset.βαθμοί || 0); }); total = Math.min(total, max); setΒαθμολογία(βαθμολογίαId,textId,clampToMax(total, Number(document.getElementById(βαθμολογίαId)?.max || 0)));
+} function updateRadio(name, βαθμολογίαId, textId){ const selected = document.querySelector(`input[name="${name}"]:checked`); setΒαθμολογία(βαθμολογίαId,textId, selected ? Number(selected.value) : 0);
+} function updateWaterPerformanceΒαθμολογία(){ const a = document.querySelector('input[name="waterConsumptionPerformance"]:checked'); const b = document.querySelector('input[name="stormwaterDesignPerformance"]:checked'); setΒαθμολογία('waterPerformanceΒαθμολογία','waterPerformanceText',Math.min((a?Number(a.value):0)+(b?Number(b.value):0),4));
+} function updateInfrastructureEnergyΒαθμολογία(){ let total = 0; document.querySelectorAll('.infrastructure-check').forEach(x => { if (x.checked) total += Number(x.dataset.βαθμοί || 0); }); const r = document.querySelector('input[name="infrastructureReduction"]:checked'); setΒαθμολογία('infrastructureEnergyΒαθμολογία','infrastructureEnergyText',Math.min(total+(r?Number(r.value):0),4));
+} function updateBuildingEnergyΒαθμολογία(){ let total = 0; document.querySelectorAll('.building-energy-check').forEach(x => { if (x.checked) total += Number(x.dataset.βαθμοί || 0); }); const r = document.querySelector('input[name="buildingEnergyReduction"]:checked'); setΒαθμολογία('buildingEnergyΒαθμολογία','buildingEnergyText',Math.min(total+(r?Number(r.value):0),4));
+} function updateRenewableΒαθμολογία(){ let total = 0; document.querySelectorAll('.renewable-check, .renewable-policy-check').forEach(x => { if (x.checked) total += Number(x.dataset.βαθμοί || 0); }); const r = document.querySelector('input[name="renewableElectricity"]:checked'); setΒαθμολογία('renewableΒαθμολογία','renewableText',Math.min(total+(r?Number(r.value):0),3));
+} function updateWastePerformanceΒαθμολογία(){ const a = document.querySelector('input[name="wasteGenerationPerformance"]:checked'); const b = document.querySelector('input[name="wasteDiversionPerformance"]:checked'); setΒαθμολογία('wastePerformanceΒαθμολογία','wastePerformanceText',Math.min((a?Number(a.value):0)+(b?Number(b.value):0),4));
+} function updateOverallSegmentPie(subtotals){ const pie = document.getElementById('totalPie'); if (!pie) return; const colors = { IP:'#b45309', NB:'#16a34a', SO:'#dc2626', TM:'#7c3aed', WM:'#06b6d4', EC:'#0284c7', WR:'#f97316', PR:'#64748b' }; const order = ['IP','NB','SO','TM','WM','EC','WR','PR']; const max = 110; const total = order.reduce((sum, key) => sum + (subtotals[key] || 0), 0); order.forEach(key => { const el = document.getElementById('totalLegend' + key); if (el) el.textContent = `${subtotals[key] || 0} / ${sectionMaximums[key]}`; }); if (total <= 0) { pie.style.background = 'conic-gradient(#e5e7eb 0deg, #e5e7eb 360deg)'; return; } let current = 0; const segments = []; order.forEach(key => { const value = subtotals[key] || 0; if (value <= 0) return; const next = current + (value / max) * 360; segments.push(`${colors[key]} ${current}deg ${next}deg`); current = next; }); if (current < 360) segments.push(`#e5e7eb ${current}deg 360deg`); pie.style.background = `conic-gradient(${segments.join(', ')})`;
+} function updateEnergySegmentPie(energyBreakdown){ const pie = document.getElementById('energyPie'); if (!pie) return; const colors = { IP:'#b45309', NB:'#16a34a', SO:'#dc2626', TM:'#7c3aed', WM:'#06b6d4', EC:'#0284c7', WR:'#f97316', PR:'#64748b' }; const order = ['IP','NB','SO','TM','WM','EC','WR','PR']; const total = order.reduce((sum, key) => sum + (energyBreakdown[key] || 0), 0); order.forEach(key => { const el = document.getElementById('energyLegend' + key); if (el) el.textContent = energyBreakdown[key] || 0; }); if (total <= 0) { pie.style.background = 'conic-gradient(#e5e7eb 0deg, #e5e7eb 360deg)'; return; } let current = 0; const segments = []; order.forEach(key => { const value = energyBreakdown[key] || 0; if (value <= 0) return; const next = current + (value / 52) * 360; segments.push(`${colors[key]} ${current}deg ${next}deg`); current = next; }); if (current < 360) { segments.push(`#e5e7eb ${current}deg 360deg`); } pie.style.background = `conic-gradient(${segments.join(', ')})`;
+} function updatePie(id, percent){ const pie = document.getElementById(id); if (!pie) return; const safe = Math.max(0, Math.min(100, percent)); const deg = safe * 3.6; let activeColor = '#111827'; if (id === 'totalPie') activeColor = '#2563eb'; if (id === 'energyPie') activeColor = '#2563eb'; pie.style.background = `conic-gradient(${activeColor} ${deg}deg, #e5e7eb ${deg}deg)`;
+} function getEnergyRating(percent){ if (percent >= 80) return 'Πολύ υψηλή επίδοση'; if (percent >= 60) return 'Καλή επίδοση'; if (percent >= 40) return 'Μέτρια επίδοση'; return 'Χαμηλή επίδοση';
+} function getEnergyConclusion(percent){ if (percent >= 80) return 'Η πόλη εμφανίζει πολύ ισχυρή ενεργειακή και κλιματική επίδοση.'; if (percent >= 60) return 'Η πόλη έχει καλή ενεργειακή επίδοση, με περιθώρια βελτίωσης.'; if (percent >= 40) return 'Η πόλη έχει μέτρια ενεργειακή επίδοση και χρειάζεται πιο στοχευμένες δράσεις.'; return 'Η πόλη έχει χαμηλή ενεργειακή επίδοση και χρειάζεται σημαντική ενίσχυση πολιτικών ενέργειας και εκπομπών.';
+} function calculateEnergySection(){ const direct = getΒαθμολογίαValue('climateΒαθμολογία') + getΒαθμολογίαValue('transportPerformanceΒαθμολογία') + getΒαθμολογίαValue('lowCarbonΒαθμολογία') + getΒαθμολογίαValue('carbonPerformanceΒαθμολογία') + getΒαθμολογίαValue('energyEfficiencyΒαθμολογία') + getΒαθμολογίαValue('infrastructureEnergyΒαθμολογία') + getΒαθμολογίαValue('buildingEnergyΒαθμολογία') + getΒαθμολογίαValue('renewableΒαθμολογία'); const indirect = getΒαθμολογίαValue('mobilityΒαθμολογία') + getΒαθμολογίαValue('activeTravelΒαθμολογία') + getΒαθμολογίαValue('waterPerformanceΒαθμολογία') + getΒαθμολογίαValue('waterEfficiencyΒαθμολογία') + getΒαθμολογίαValue('wastePerformanceΒαθμολογία') + getΒαθμολογίαValue('procurementResilienceΒαθμολογία') + getΒαθμολογίαValue('compactDevelopmentΒαθμολογία') + getΒαθμολογίαValue('heatIslandΒαθμολογία') + getΒαθμολογίαValue('civicCarbonΒαθμολογία') + getΒαθμολογίαValue('embodiedCarbonΒαθμολογία'); const total = direct + indirect; const max = 52; const percent = total / max * 100; document.getElementById('energyTotalΒαθμολογία').textContent = total; document.getElementById('directEnergyΒαθμολογία').textContent = `${direct} / 27`; document.getElementById('indirectEnergyΒαθμολογία').textContent = `${indirect} / 25`; document.getElementById('energyPieText').textContent = `${total} / ${max}`; document.getElementById('energyRating').textContent = getEnergyRating(percent); document.getElementById('energyConclusion').textContent = getEnergyConclusion(percent); updateEnergySegmentPie({ IP: getΒαθμολογίαValue('climateΒαθμολογία'), NB: getΒαθμολογίαValue('compactDevelopmentΒαθμολογία') + getΒαθμολογίαValue('heatIslandΒαθμολογία'), SO: 0, TM: getΒαθμολογίαValue('transportPerformanceΒαθμολογία') + getΒαθμολογίαValue('lowCarbonΒαθμολογία') + getΒαθμολογίαValue('mobilityΒαθμολογία') + getΒαθμολογίαValue('activeTravelΒαθμολογία'), WM: getΒαθμολογίαValue('waterPerformanceΒαθμολογία') + getΒαθμολογίαValue('waterEfficiencyΒαθμολογία'), EC: getΒαθμολογίαValue('carbonPerformanceΒαθμολογία') + getΒαθμολογίαValue('energyEfficiencyΒαθμολογία') + getΒαθμολογίαValue('infrastructureEnergyΒαθμολογία') + getΒαθμολογίαValue('buildingEnergyΒαθμολογία') + getΒαθμολογίαValue('renewableΒαθμολογία') + getΒαθμολογίαValue('civicCarbonΒαθμολογία'), WR: getΒαθμολογίαValue('wastePerformanceΒαθμολογία') + getΒαθμολογίαValue('embodiedCarbonΒαθμολογία') + getΒαθμολογίαValue('procurementResilienceΒαθμολογία'), PR: 0 });
+} function toggleCategoryLock(prefix){ if(prefix === 'wr'){ const g = document.getElementById('wrGenerationCheck'); const d = document.getElementById('wrDiversionCheck'); const unlocked = g && d && g.checked && d.checked; document.querySelectorAll('[data-section="WR"], .waste-control').forEach(el=>{ el.disabled = !unlocked; if(!unlocked){ if(el.type==='checkbox'||el.type==='radio') el.checked=false; if(el.type==='number') el.value=0; } }); const w = document.getElementById('wrLockedWarning'); if(w) w.style.display = unlocked ? 'none' : 'block'; return; } const map = { nb:['NB','nbΠροαπαιτούμενο','.nb-control','nbLockedWarning'], tm:['TM','tmΠροαπαιτούμενο','.transport-control','tmLockedWarning'], wm:['WM','wmΠροαπαιτούμενο','.water-control','wmLockedWarning'], ec:['EC','ecΠροαπαιτούμενο','.carbon-performance-option, .energy-efficiency-control, .infrastructure-control, .building-energy-control, .renewable-control, .civic-carbon-control','ecLockedWarning'] }; const item = map[prefix]; if(!item) return; const [section, name, selector, warningId] = item; const yes = document.querySelector(`input[name="${name}"][value="yes"]`); const unlocked = yes && yes.checked; document.querySelectorAll(`[data-section="${section}"], ${selector}`).forEach(el=>{ el.disabled = !unlocked; if(!unlocked){ if(el.type==='checkbox'||el.type==='radio') el.checked=false; if(el.type==='number') el.value=0; } }); const w = document.getElementById(warningId); if(w) w.style.display = unlocked ? 'none' : 'block';
+} function escapeReportHTML(value){
+  return String(value ?? '')
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+}
+
+function makeSimpleReportRing(percent, color, centerText){
+  const safePercent = Math.max(0, Math.min(100, Number(percent) || 0));
+  const radius = 54;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (safePercent / 100) * circumference;
+
+  return '<svg class="report-ring" width="150" height="150" viewBox="0 0 150 150">' +
+    '<circle cx="75" cy="75" r="' + radius + '" fill="none" stroke="#e5e7eb" stroke-width="14"></circle>' +
+    '<circle cx="75" cy="75" r="' + radius + '" fill="none" stroke="' + color + '" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '" transform="rotate(-90 75 75)"></circle>' +
+    '<text x="75" y="82" text-anchor="middle" class="ring-text">' + escapeReportHTML(centerText) + '</text>' +
+  '</svg>';
+}
+
+function makeSegmentedReportRing(segments, maxTotal, centerText){
+  const radius = 54;
+  const circumference = 2 * Math.PI * radius;
+  let used = 0;
+
+  const parts = (segments || []).map(function(s){
+    const value = Math.max(0, Number(s.value) || 0);
+    if(value <= 0 || !maxTotal) return '';
+
+    const length = Math.max(0, (value / maxTotal) * circumference);
+    const gap = Math.max(0, circumference - length);
+    const offset = -used;
+    used += length;
+
+    return '<circle cx="75" cy="75" r="' + radius + '" fill="none" stroke="' + s.color + '" stroke-width="14" stroke-linecap="butt" stroke-dasharray="' + length + ' ' + gap + '" stroke-dashoffset="' + offset + '" transform="rotate(-90 75 75)"></circle>';
+  }).join('');
+
+  return '<svg class="report-ring" width="150" height="150" viewBox="0 0 150 150">' +
+    '<circle cx="75" cy="75" r="' + radius + '" fill="none" stroke="#e5e7eb" stroke-width="14"></circle>' +
+    parts +
+    '<text x="75" y="82" text-anchor="middle" class="ring-text">' + escapeReportHTML(centerText) + '</text>' +
+  '</svg>';
+}
+
+
+function collectSectionResults(){
+  const names = {
+    IP:'Ολοκληρωμένος Σχεδιασμός και Ετοιμότητα',
+    NB:'Φυσικό και Δομημένο Περιβάλλον',
+    SO:'Κοινωνική Βιωσιμότητα',
+    TM:'Μεταφορές και Κινητικότητα',
+    WM:'Διαχείριση Νερού',
+    EC:'Διαχείριση Ενέργειας και Άνθρακα',
+    WR:'Μείωση Αποβλήτων και Κυκλικότητα',
+    PR:'Καινοτομία'
+  };
+
+  return Object.keys(sectionMaximums).map(function(key){
+    const side = document.getElementById('side-' + key);
+    let score = 0;
+
+    if(side && side.textContent){
+      const match = side.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+      if(match) score = Number(match[1]) || 0;
+    } else {
+      const inputs = Array.from(document.querySelectorAll('.κριτήριο-input[data-section="' + key + '"]'));
+      score = inputs.reduce(function(sum, input){
+        return sum + (Number(input.value) || 0);
+      }, 0);
+    }
+
+    const max = sectionMaximums[key] || 0;
+    return {
+      key: key,
+      name: names[key] || key,
+      βαθμολογία: score,
+      max: max,
+      percent: max ? Math.round(score / max * 100) : 0
+    };
+  });
+}
+
+
+function getPrerequisiteCompletedByName(name){
+  const yes = document.querySelector(`input[name="${name}"][value="yes"]`);
+  return !!(yes && yes.checked);
+}
+
+function getIPPrerequisiteCompleted(index){
+  const checks = document.querySelectorAll('.prereq-check');
+  return !!(checks[index] && checks[index].checked);
+}
+
+function prerequisiteStatusLabel(done){
+  return done ? 'Συμπληρώθηκε' : 'Δεν συμπληρώθηκε';
+}
+
+function creditStatusLabel(scoreId, max){
+  const score = getΒαθμολογίαValue(scoreId);
+  return score + ' / ' + max;
+}
+
+function buildEnergyCriteriaReportRows(){
+  const rows = [
+    { title:'Αποτίμηση Άνθρακα (Carbon Assessment)', section:'IP', relation:'Άμεσο', type:'Υποχρεωτικό', status: prerequisiteStatusLabel(getIPPrerequisiteCompleted(3)) },
+    { title:'Σχέδιο Δράσης για το Κλίμα (Climate Action Plan)', section:'IP', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('climateΒαθμολογία', 1) },
+    { title:'Αναφορά Δεδομένων Άνθρακα (Carbon Data Reporting)', section:'EC', relation:'Άμεσο', type:'Υποχρεωτικό', status: prerequisiteStatusLabel(getPrerequisiteCompletedByName('ecΠροαπαιτούμενο')) },
+    { title:'Επίδοση Άνθρακα (Carbon Performance)', section:'EC', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('carbonPerformanceΒαθμολογία', 4) },
+    { title:'Ενεργειακή Απόδοση και Απανθρακοποίηση (Energy Efficiency and Decarbonization)', section:'EC', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('energyEfficiencyΒαθμολογία', 5) },
+    { title:'Ενεργειακή Απόδοση Υποδομών (Infrastructure Energy Efficiency)', section:'EC', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('infrastructureEnergyΒαθμολογία', 4) },
+    { title:'Διαχείριση Ενέργειας Κτιρίων (Building Energy Management)', section:'EC', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('buildingEnergyΒαθμολογία', 4) },
+    { title:'Ανανεώσιμες Πηγές Ενέργειας (Renewable Energy)', section:'EC', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('renewableΒαθμολογία', 3) },
+    { title:'Επίδοση Μεταφορών (Transportation Performance)', section:'TM', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('transportPerformanceΒαθμολογία', 4) },
+    { title:'Μεταφορές Χαμηλών Εκπομπών Άνθρακα (Low Carbon Transportation)', section:'TM', relation:'Άμεσο', type:'Credit', status: creditStatusLabel('lowCarbonΒαθμολογία', 2) },
+    { title:'Μείωση Φαινομένου Αστικής Θερμικής Νησίδας (Heat Island Reduction)', section:'NB', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('heatIslandΒαθμολογία', 2) },
+    { title:'Βιώσιμη και Προσβάσιμη Αστική Ανάπτυξη (Compact Development)', section:'NB', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('compactDevelopmentΒαθμολογία', 3) },
+    { title:'Διαχείριση Κινητικότητας (Mobility Management)', section:'TM', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('mobilityΒαθμολογία', 2) },
+    { title:'Ενεργές Μετακινήσεις (Active Travel)', section:'TM', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('activeTravelΒαθμολογία', 2) },
+    { title:'Επίδοση Διαχείρισης Νερού (Water Performance)', section:'WM', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('waterPerformanceΒαθμολογία', 4) },
+    { title:'Αποδοτικότητα Νερού και Υποδομές (Water Efficiency and Infrastructure)', section:'WM', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('waterEfficiencyΒαθμολογία', 2) },
+    { title:'Επίδοση Αποβλήτων (Waste Performance)', section:'WR', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('wastePerformanceΒαθμολογία', 4) },
+    { title:'Προμήθειες και Ανθεκτικότητα (Procurement and Resilience)', section:'WR', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('procurementResilienceΒαθμολογία', 2) },
+    { title:'Δημοτική Ηγεσία: Άνθρακας και Ανθεκτικότητα (Civic Leadership—Carbon and Resilience)', section:'EC', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('civicCarbonΒαθμολογία', 2) },
+    { title:'Μείωση Ενσωματωμένου Άνθρακα (Embodied Carbon)', section:'WR', relation:'Έμμεσο', type:'Credit', status: creditStatusLabel('embodiedCarbonΒαθμολογία', 2) }
+  ];
+
+  return rows.map(function(row){
+    const relationClass = row.relation === 'Άμεσο' ? 'direct-cell' : 'indirect-cell';
+    return '<tr><td><strong>' + escapeReportHTML(row.section) + '</strong>: ' + escapeReportHTML(row.title) + '</td><td class="' + relationClass + '">' + escapeReportHTML(row.relation) + '</td><td>' + escapeReportHTML(row.type) + '</td><td>' + escapeReportHTML(row.status) + '</td></tr>';
+  }).join('');
+}
+
+function exportPDFReport(){
+  try {
+    calculateDetailedΒαθμολογία();
+
+    const city = document.getElementById('cityName') ? document.getElementById('cityName').value : '-';
+    const region = document.getElementById('regionName') ? document.getElementById('regionName').value : '-';
+    const year = document.getElementById('assessmentYear') ? document.getElementById('assessmentYear').value : '-';
+    const notes = document.getElementById('generalNotes') ? document.getElementById('generalNotes').value : '-';
+
+    const total = Number((document.getElementById('totalΒαθμολογία') || {}).textContent || 0);
+    const totalPercent = Math.round(total / 110 * 100);
+    const rating = (document.getElementById('finalRating') || {}).textContent || '-';
+    const prereqs = (document.getElementById('headerPrereqs') || {}).textContent || '-';
+    const credits = (document.getElementById('headerCredits') || {}).textContent || '-';
+
+    const energyTotal = Number((document.getElementById('energyTotalΒαθμολογία') || {}).textContent || 0);
+    const energyPercent = Math.round(energyTotal / 52 * 100);
+    const energyConclusion = (document.getElementById('energyConclusion') || {}).textContent || '-';
+    const direct = (document.getElementById('directEnergyΒαθμολογία') || {}).textContent || '0 / 27';
+    const indirect = (document.getElementById('indirectEnergyΒαθμολογία') || {}).textContent || '0 / 25';
+
+    const sections = collectSectionResults();
+
+    const sectionRows = sections.map(function(s){
+      const key = s.key === 'PR' ? 'IN' : s.key;
+      return '<tr><td><strong>' + escapeReportHTML(key) + '</strong>: ' + escapeReportHTML(s.name) + '</td><td>' + s.βαθμολογία + ' / ' + s.max + '</td><td>' + s.percent + '%</td></tr>';
+    }).join('');
+
+    const colourLegend = '<div class="colour-legend">' +
+      '<span><i style="background:#b45309"></i>IP</span>' +
+      '<span><i style="background:#16a34a"></i>NB</span>' +
+      '<span><i style="background:#dc2626"></i>SO</span>' +
+      '<span><i style="background:#7c3aed"></i>TM</span>' +
+      '<span><i style="background:#06b6d4"></i>WM</span>' +
+      '<span><i style="background:#0284c7"></i>EC</span>' +
+      '<span><i style="background:#f97316"></i>WR</span>' +
+      '<span><i style="background:#64748b"></i>IN</span>' +
+    '</div>';
+
+    const energyRows = ['IP','NB','SO','TM','WM','EC','WR'].map(function(k){
+      const value = (document.getElementById('energyLegend' + k) || {}).textContent || '0';
+      const labels = {
+        IP:'Ολοκληρωμένος Σχεδιασμός',
+        NB:'Φυσικό/Δομημένο Περιβάλλον',
+        SO:'Κοινωνική Βιωσιμότητα',
+        TM:'Μεταφορές',
+        WM:'Νερό',
+        EC:'Ενέργεια & Άνθρακας',
+        WR:'Απόβλητα'
+      };
+      const type = (k === 'IP' || k === 'EC') ? 'Άμεσο' : 'Έμμεσο';
+      return '<tr><td><strong>' + k + '</strong>: ' + labels[k] + '</td><td>' + type + '</td><td>' + value + '</td></tr>';
+    }).join('');
+
+    const energyCriteriaRows = buildEnergyCriteriaReportRows();
+
+    const sectionColors = {
+      IP:'#b45309',
+      NB:'#16a34a',
+      SO:'#dc2626',
+      TM:'#7c3aed',
+      WM:'#06b6d4',
+      EC:'#0284c7',
+      WR:'#f97316',
+      PR:'#64748b'
+    };
+
+    const totalSegments = sections.map(function(s){
+      return {
+        label: s.key === 'PR' ? 'IN' : s.key,
+        value: Number(s.βαθμολογία) || 0,
+        color: sectionColors[s.key] || '#64748b'
+      };
+    });
+
+    const energySegments = ['IP','NB','SO','TM','WM','EC','WR','PR'].map(function(k){
+      const el = document.getElementById('energyLegend' + k);
+      return {
+        label: k === 'PR' ? 'IN' : k,
+        value: Number(el ? el.textContent : 0) || 0,
+        color: sectionColors[k] || '#64748b'
+      };
+    });
+
+    const totalRing = makeSegmentedReportRing(totalSegments, 110, totalPercent + '%');
+    const energyRing = makeSegmentedReportRing(energySegments, 52, energyPercent + '%');
+
+    const reportHTML = '<!DOCTYPE html><html lang="el"><head><meta charset="UTF-8"><title>URSI Αναφορά Αξιολόγησης</title>' +
+    '<style>' +
+    '*{box-sizing:border-box;}body{font-family:Arial,sans-serif;color:#111827;margin:0;background:#fff;padding:28px;}' +
+    '.report{max-width:920px;margin:0 auto;}.header{border-bottom:3px solid #111827;padding-bottom:14px;margin-bottom:18px;}' +
+    'h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em;}h2{font-size:18px;margin:22px 0 10px;border-bottom:1px solid #e5e7eb;padding-bottom:6px;}' +
+    '.muted{color:#6b7280;font-size:13px;line-height:1.45;}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0;}' +
+    '.box{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f9fafb;min-height:86px;}.label{font-size:12px;color:#6b7280;margin-bottom:5px;}.value{font-size:20px;font-weight:700;line-height:1.2;}' +
+    '.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}.chart-card{border:1px solid #e5e7eb;border-radius:14px;padding:14px;text-align:center;background:#f9fafb;}' +
+    '.report-ring{display:block;margin:12px auto 8px;}.ring-text{font-size:20px;font-weight:700;fill:#111827;font-family:Arial,sans-serif;}.chart-value{font-size:13px;color:#4b5563;margin-top:4px;}' +
+    '.colour-legend{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:8px;font-size:11px;color:#4b5563;}.colour-legend span{display:inline-flex;align-items:center;gap:4px;}.colour-legend i{display:inline-block;width:8px;height:8px;border-radius:999px;}' +
+    'table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;}th,td{border:1px solid #e5e7eb;padding:9px;text-align:left;vertical-align:top;}th{background:#f3f4f6;}.direct-cell{color:#15803d;font-weight:700;}.indirect-cell{color:#5b21b6;font-weight:700;}' +
+    '.notes{white-space:pre-wrap;border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#f9fafb;font-size:13px;line-height:1.5;}.footer{margin-top:24px;font-size:11px;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:10px;}' +
+    '.print-btn{margin-top:18px;padding:10px 14px;border:0;border-radius:10px;background:#111827;color:white;cursor:pointer;}@media print{body{padding:18mm;}.no-print{display:none;}.report{max-width:none;}.box,.chart-card{break-inside:avoid;}h2{break-after:avoid;}}' +
+    '</style></head><body><div class="report">' +
+    '<div class="header"><h1>URSI: Αναφορά Αξιολόγησης Πόλης</h1><div class="muted">Αυτόματη αναφορά από το διαδραστικό εργαλείο αξιολόγησης.</div></div>' +
+    '<h2>Στοιχεία Πόλης</h2><div class="grid">' +
+    '<div class="box"><div class="label">Πόλη</div><div class="value">' + escapeReportHTML(city) + '</div></div>' +
+    '<div class="box"><div class="label">Χώρα / Περιφέρεια</div><div class="value">' + escapeReportHTML(region) + '</div></div>' +
+    '<div class="box"><div class="label">Έτος</div><div class="value">' + escapeReportHTML(year) + '</div></div>' +
+    '<div class="box"><div class="label">Υποχρεωτικά</div><div class="value">' + escapeReportHTML(prereqs) + '</div></div></div>' +
+    '<h2>Συνολικό Αποτέλεσμα</h2><div class="grid">' +
+    '<div class="box"><div class="label">Συνολική βαθμολογία</div><div class="value">' + total + ' / 110</div></div>' +
+    '<div class="box"><div class="label">Ποσοστό</div><div class="value">' + totalPercent + '%</div></div>' +
+    '<div class="box"><div class="label">Πιστοποίηση</div><div class="value">' + escapeReportHTML(rating) + '</div></div>' +
+    '<div class="box"><div class="label">Συμπληρωμένα κριτήρια</div><div class="value">' + escapeReportHTML(credits) + '</div></div></div>' +
+    '<div class="charts">' +
+    '<div class="chart-card"><strong>Συνολική πρόοδος URSI</strong>' + totalRing + '<div class="chart-value">' + total + ' / 110</div>' + colourLegend + '</div>' +
+    '<div class="chart-card"><strong>Ενέργεια & Εκπομπές</strong>' + energyRing + '<div class="chart-value">' + energyTotal + ' / 52</div>' + colourLegend + '</div>' +
+    '</div>' +
+    '<h2>Βαθμολογία ανά Ενότητα</h2><table><thead><tr><th>Ενότητα</th><th>Βαθμολογία</th><th>Ποσοστό</th></tr></thead><tbody>' + sectionRows + '</tbody></table>' +
+    '<h2>Ενότητα Ενέργειας & Εκπομπών</h2><div class="grid">' +
+    '<div class="box"><div class="label">Βαθμολογία</div><div class="value">' + energyTotal + ' / 52</div></div>' +
+    '<div class="box"><div class="label">Ποσοστό</div><div class="value">' + energyPercent + '%</div></div>' +
+    '<div class="box"><div class="label">Άμεσα</div><div class="value">' + escapeReportHTML(direct) + '</div></div>' +
+    '<div class="box"><div class="label">Έμμεσα</div><div class="value">' + escapeReportHTML(indirect) + '</div></div></div>' +
+    '<p class="muted"><strong>Συμπέρασμα:</strong> ' + escapeReportHTML(energyConclusion) + '</p>' +
+    '<table><thead><tr><th>Υποκριτήριο</th><th>Σχέση</th><th>Τύπος</th><th>Κατάσταση / Βαθμολογία</th></tr></thead><tbody>' + energyCriteriaRows + '</tbody></table>' +
+    '<h2>Γενικές Σημειώσεις</h2><div class="notes">' + escapeReportHTML(notes) + '</div>' +
+    '<div class="footer">Generated from URSI Assessment Interface.</div><button class="print-btn no-print" onclick="window.print()">Εκτύπωση / Αποθήκευση ως PDF</button>' +
+    '</div></body></html>';
+
+    const w = window.open('', '_blank');
+    if(!w){
+      alert('Το popup μπλοκαρίστηκε. Επίτρεψε τα popups για να ανοίξει η αναφορά PDF.');
+      return;
+    }
+
+    w.document.open();
+    w.document.write(reportHTML);
+    w.document.close();
+
+    setTimeout(function(){
+      w.focus();
+      w.print();
+    }, 500);
+  } catch (error) {
+    console.error(error);
+    alert('Σφάλμα PDF: ' + (error && error.message ? error.message : error));
+  }
+}
+
+function clampToMax(value, max){
+  return Math.min(Number(value) || 0, Number(max) || 0);
+}
+
+function calculateDetailedΒαθμολογία(){ const subtotals = {IP:0,NB:0,SO:0,TM:0,WM:0,EC:0,WR:0,PR:0}; let enteredΚριτήρια = 0; document.querySelectorAll('.κριτήριο-input').forEach(input=>{ const sec = input.dataset.section; const v = normalizeCredit(input); if(sec) subtotals[sec] += v; if(v > 0) enteredΚριτήρια++; }); Object.keys(subtotals).forEach(sec=>{ const a = document.getElementById(`subtotal-${sec}`); const b = document.getElementById(`side-${sec}`); if(a) a.textContent = `${subtotals[sec]} / ${sectionMaximums[sec]}`; if(b) b.textContent = `${subtotals[sec]} / ${sectionMaximums[sec]}`; }); const total = Object.values(subtotals).reduce((s,v)=>s+v,0); const rating = getRating(total); const city = document.getElementById('cityName').value || '-'; const ipPrereqsCompleted = document.querySelectorAll('.prereq-check:checked').length; const ipPrereqsTotal = document.querySelectorAll('.prereq-check').length; const nbCompleted = document.querySelector('input[name="nbΠροαπαιτούμενο"][value="yes"]:checked') ? 1 : 0; const tmCompleted = document.querySelector('input[name="tmΠροαπαιτούμενο"][value="yes"]:checked') ? 1 : 0; const wmCompleted = document.querySelector('input[name="wmΠροαπαιτούμενο"][value="yes"]:checked') ? 1 : 0; const ecCompleted = document.querySelector('input[name="ecΠροαπαιτούμενο"][value="yes"]:checked') ? 1 : 0; const wrGeneration = document.getElementById('wrGenerationCheck'); const wrDiversion = document.getElementById('wrDiversionCheck'); const wrCompleted = (wrGeneration && wrDiversion && wrGeneration.checked && wrDiversion.checked) ? 1 : 0; const completedPrereqs = ipPrereqsCompleted + nbCompleted + tmCompleted + wmCompleted + ecCompleted + wrCompleted; const totalPrereqs = ipPrereqsTotal + 5; document.getElementById('totalΒαθμολογία').textContent = total; document.getElementById('headerΒαθμολογία').textContent = `${total} / 110`; document.getElementById('headerRating').textContent = rating; document.getElementById('finalRating').textContent = rating; document.getElementById('headerPrereqs').textContent = `${completedPrereqs}/${totalPrereqs}`; document.getElementById('headerCredits').textContent = enteredΚριτήρια; document.getElementById('selectedCity').textContent = city; document.getElementById('progressBar').style.width = `${(total/110)*100}%`; updateOverallSegmentPie(subtotals); document.getElementById('totalPieText').textContent = `${Math.round(total/110*100)}%`; calculateEnergySection(); const warning = document.getElementById('prereqWarning'); if(completedPrereqs === totalPrereqs){ warning.textContent = 'Όλα τα υποχρεωτικά στοιχεία έχουν ολοκληρωθεί.'; warning.style.background = '#ecfdf5'; warning.style.color = '#166534'; warning.style.borderColor = '#bbf7d0'; } else { warning.textContent = `Λείπουν ${totalPrereqs-completedPrereqs} υποχρεωτικά στοιχεία.`; warning.style.background = '#fff7ed'; warning.style.color = '#9a3412'; warning.style.borderColor = '#fed7aa'; }
+} function resetForm(){ document.querySelectorAll('input[type="number"]').forEach(el=>el.value=0); document.querySelectorAll('input[type="text"], textarea').forEach(el=>el.value=''); document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el=>{ el.checked=false; el.disabled=false; }); ['nb','tm','wm','ec','wr'].forEach(k => toggleCategoryLock(k)); document.querySelectorAll('.auto-score-box span').forEach(el=>el.textContent='0'); calculateDetailedΒαθμολογία();
+} function bindEvents(){ document.querySelectorAll('.κριτήριο-input, .prereq-check').forEach(el=>{ el.addEventListener('input', calculateDetailedΒαθμολογία); el.addEventListener('change', calculateDetailedΒαθμολογία); }); document.querySelectorAll('.ip-leadership-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.ip-leadership-check','ipLeadershipΒαθμολογία','ipLeadershipText',1))); document.querySelectorAll('.ip-participation-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.ip-participation-check','ipParticipationΒαθμολογία','ipParticipationText',1))); document.querySelectorAll('.climate-check').forEach(el=>el.addEventListener('change',()=>{ const count=[...document.querySelectorAll('.climate-check')].filter(x=>x.checked).length; setΒαθμολογία('climateΒαθμολογία','climateAutoText',count>=4?1:0); })); document.querySelectorAll('.ip-resilience-plan-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.ip-resilience-plan-check','ipResiliencePlanΒαθμολογία','ipResiliencePlanText',1))); document.querySelectorAll('.ip-enhanced-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.ip-enhanced-check','ipEnhancedΒαθμολογία','ipEnhancedText',4))); document.querySelectorAll('.nb-performance-option').forEach(el=>el.addEventListener('change',()=>updateRadio('nbPerformanceOption','nbPerformanceΒαθμολογία','nbPerformanceText'))); document.querySelectorAll('.heat-island-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.heat-island-check','heatIslandΒαθμολογία','heatIslandText',2))); document.querySelectorAll('.natural-resource-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.natural-resource-check','naturalResourcesΒαθμολογία','naturalResourcesText',2))); document.querySelectorAll('.environmental-quality-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.environmental-quality-check','environmentalQualityΒαθμολογία','environmentalQualityText',3))); document.querySelectorAll('.open-space-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.open-space-check','openSpacesΒαθμολογία','openSpacesText',2))); document.querySelectorAll('.compact-development-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.compact-development-check','compactDevelopmentΒαθμολογία','compactDevelopmentText',3))); document.querySelectorAll('.land-use-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.land-use-check','landUseΒαθμολογία','landUseText',1))); document.querySelectorAll('.stewardship-check').forEach(el=>el.addEventListener('change',()=>updateBySelector('.stewardship-check','environmentalStewardshipΒαθμολογία','environmentalStewardshipText',2))); [ ['.housing-check','housingΒαθμολογία','housingText',2],['.social-infra-check','socialInfraΒαθμολογία','socialInfraText',2],['.environmental-check','environmentalΒαθμολογία','environmentalText',2], ['.health-check','healthΒαθμολογία','healthText',2],['.economic-check','economicΒαθμολογία','economicText',2],['.education-check','educationΒαθμολογία','educationText',2], ['.civic-social-check','civicSocialΒαθμολογία','civicSocialText',2],['.public-transit-check','publicTransitΒαθμολογία','publicTransitText',2], ['.low-carbon-check','lowCarbonΒαθμολογία','lowCarbonText',2],['.mobility-check','mobilityΒαθμολογία','mobilityText',2],['.active-travel-check','activeTravelΒαθμολογία','activeTravelText',2], ['.civic-transport-check','civicTransportΒαθμολογία','civicTransportText',2],['.water-supply-check','waterSupplyΒαθμολογία','waterSupplyText',2], ['.water-efficiency-check','waterEfficiencyΒαθμολογία','waterEfficiencyText',2],['.stormwater-check','stormwaterΒαθμολογία','stormwaterText',2], ['.water-civic-check','waterCivicΒαθμολογία','waterCivicText',2],['.energy-efficiency-check','energyEfficiencyΒαθμολογία','energyEfficiencyText',5], ['.civic-carbon-check','civicCarbonΒαθμολογία','civicCarbonText',2],['.special-organic-check','specialOrganicWasteΒαθμολογία','specialOrganicWasteText',2], ['.procurement-check','procurementResilienceΒαθμολογία','procurementResilienceText',2],['.project-priority-check','projectPriorityΒαθμολογία','innovationText',10] ].forEach(([sel,score,text,max])=>document.querySelectorAll(sel).forEach(el=>el.addEventListener('change',()=>updateBySelector(sel,score,text,max)))); document.querySelectorAll('.transport-performance-option').forEach(el=>el.addEventListener('change',()=>updateRadio('transportPerformanceOption','transportPerformanceΒαθμολογία','transportPerformanceText'))); document.querySelectorAll('.water-performance-control').forEach(el=>el.addEventListener('change',updateWaterPerformanceΒαθμολογία)); document.querySelectorAll('.carbon-performance-option').forEach(el=>el.addEventListener('change',()=>updateRadio('carbonPerformanceOption','carbonPerformanceΒαθμολογία','carbonPerformanceText'))); document.querySelectorAll('.infrastructure-control').forEach(el=>el.addEventListener('change',updateInfrastructureEnergyΒαθμολογία)); document.querySelectorAll('.building-energy-control').forEach(el=>el.addEventListener('change',updateBuildingEnergyΒαθμολογία)); document.querySelectorAll('.renewable-control').forEach(el=>el.addEventListener('change',updateRenewableΒαθμολογία)); document.querySelectorAll('.waste-performance-control').forEach(el=>el.addEventListener('change',updateWastePerformanceΒαθμολογία)); document.querySelectorAll('.embodied-carbon-radio').forEach(el=>el.addEventListener('change',()=>updateRadio('embodiedCarbonOption','embodiedCarbonΒαθμολογία','embodiedCarbonText'))); document.querySelectorAll('.community-reuse-radio').forEach(el=>el.addEventListener('change',()=>updateRadio('communityReuseOption','communityReuseΒαθμολογία','communityReuseText'))); document.addEventListener('change',e=>{ if(e.target.name==='nbΠροαπαιτούμενο') toggleCategoryLock('nb'); if(e.target.name==='tmΠροαπαιτούμενο') toggleCategoryLock('tm'); if(e.target.name==='wmΠροαπαιτούμενο') toggleCategoryLock('wm'); if(e.target.name==='ecΠροαπαιτούμενο') toggleCategoryLock('ec'); if(e.target.classList.contains('wr-prereq-control')) toggleCategoryLock('wr'); calculateDetailedΒαθμολογία(); }); document.getElementById('cityName').addEventListener('input', calculateDetailedΒαθμολογία);
+} 
+
+/* ===== URSI Local Storage Memory ===== */
+const URSI_MEMORY_KEY = 'URSI_SAVED_ASSESSMENTS_V1';
+const URSI_AUTOSAVE_KEY = 'URSI_AUTOSAVE_DRAFT_V1';
+let ursiAutoSaveTimer = null;
+let ursiRestoringAssessment = false;
+
+function getSavedAssessments(){
+  try { return JSON.parse(localStorage.getItem(URSI_MEMORY_KEY) || '{}') || {}; }
+  catch(e){ return {}; }
+}
+
+function setSavedAssessments(data){
+  localStorage.setItem(URSI_MEMORY_KEY, JSON.stringify(data || {}));
+}
+
+function setMemoryStatus(message){
+  const el = document.getElementById('memoryStatus');
+  if(el) el.textContent = message;
+}
+
+function makeAssessmentKey(label){
+  return String(label || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+}
+
+function currentAssessmentLabel(){
+  const city = (document.getElementById('cityName')?.value || 'Αξιολόγηση').trim() || 'Αξιολόγηση';
+  const region = (document.getElementById('regionName')?.value || '').trim();
+  const year = (document.getElementById('assessmentYear')?.value || '').trim();
+  return [city, region, year].filter(Boolean).join(' - ');
+}
+
+function serializeAssessment(){
+  const fields = [];
+  document.querySelectorAll('input, textarea, select').forEach((el, index) => {
+    if(el.type === 'file') return;
+    const key = el.id || el.name || `${el.tagName}_${index}`;
+    const item = { key, tag: el.tagName, type: el.type || '', id: el.id || '', name: el.name || '', index };
+    if(el.type === 'checkbox' || el.type === 'radio') item.checked = !!el.checked;
+    else item.value = el.value;
+    fields.push(item);
+  });
+  const spans = [];
+  document.querySelectorAll('.auto-score-box span, [id$="Text"], [id$="AutoText"]').forEach(el => {
+    if(el.id) spans.push({ id: el.id, text: el.textContent });
+  });
+  return {
+    version: 1,
+    savedAt: new Date().toISOString(),
+    label: currentAssessmentLabel(),
+    fields,
+    spans
+  };
+}
+
+function restoreAssessment(data){
+  if(!data || !Array.isArray(data.fields)) return false;
+  ursiRestoringAssessment = true;
+  try {
+    data.fields.forEach(item => {
+      let el = item.id ? document.getElementById(item.id) : null;
+      if(!el && item.name){
+        const candidates = Array.from(document.getElementsByName(item.name));
+        if(item.type === 'radio') el = candidates.find(x => String(x.value) === String(item.value)) || candidates[item.index] || null;
+        else el = candidates[item.index] || candidates[0] || null;
+      }
+      if(!el || el.type === 'file') return;
+      if(el.type === 'checkbox' || el.type === 'radio') el.checked = !!item.checked;
+      else if('value' in item) el.value = item.value ?? '';
+    });
+    if(Array.isArray(data.spans)){
+      data.spans.forEach(item => {
+        const el = item.id ? document.getElementById(item.id) : null;
+        if(el) el.textContent = item.text ?? '0';
+      });
+    }
+    ['nb','tm','wm','ec','wr'].forEach(k => toggleCategoryLock(k));
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      if(el.type !== 'file') el.dispatchEvent(new Event('change', { bubbles:true }));
+    });
+    calculateDetailedΒαθμολογία();
+    setTimeout(applyIPPrerequisiteLock, 0);
+    return true;
+  } finally {
+    setTimeout(() => { ursiRestoringAssessment = false; }, 0);
+  }
+}
+
+function refreshSavedAssessmentsSelect(){
+  const select = document.getElementById('savedAssessmentSelect');
+  if(!select) return;
+  const saved = getSavedAssessments();
+  const keys = Object.keys(saved).sort((a,b) => (saved[b].savedAt || '').localeCompare(saved[a].savedAt || ''));
+  select.innerHTML = '';
+  if(!keys.length){
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'Δεν υπάρχουν αποθηκευμένες αξιολογήσεις';
+    select.appendChild(opt);
+    return;
+  }
+  keys.forEach(key => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    const date = saved[key].savedAt ? new Date(saved[key].savedAt).toLocaleString('el-GR') : '';
+    opt.textContent = `${key}${date ? ' (' + date + ')' : ''}`;
+    select.appendChild(opt);
+  });
+}
+
+function saveCurrentAssessment(){
+  calculateDetailedΒαθμολογία();
+  const data = serializeAssessment();
+  const label = makeAssessmentKey(data.label || currentAssessmentLabel());
+  const saved = getSavedAssessments();
+  saved[label] = { ...data, label };
+  setSavedAssessments(saved);
+  refreshSavedAssessmentsSelect();
+  const select = document.getElementById('savedAssessmentSelect');
+  if(select) select.value = label;
+  setMemoryStatus(`Αποθηκεύτηκε: ${label}`);
+}
+
+function loadSelectedAssessment(){
+  const select = document.getElementById('savedAssessmentSelect');
+  const key = select ? select.value : '';
+  if(!key){ setMemoryStatus('Δεν έχει επιλεγεί αποθηκευμένη αξιολόγηση.'); return; }
+  const saved = getSavedAssessments();
+  if(restoreAssessment(saved[key])) setMemoryStatus(`Φορτώθηκε: ${key}`);
+}
+
+function deleteSelectedAssessment(){
+  const select = document.getElementById('savedAssessmentSelect');
+  const key = select ? select.value : '';
+  if(!key){ setMemoryStatus('Δεν έχει επιλεγεί αποθηκευμένη αξιολόγηση για διαγραφή.'); return; }
+  const saved = getSavedAssessments();
+  delete saved[key];
+  setSavedAssessments(saved);
+  refreshSavedAssessmentsSelect();
+  setMemoryStatus(`Διαγράφηκε: ${key}`);
+}
+
+function scheduleAutoSave(){
+  if(ursiRestoringAssessment) return;
+  clearTimeout(ursiAutoSaveTimer);
+  ursiAutoSaveTimer = setTimeout(() => {
+    try {
+      const data = serializeAssessment();
+      localStorage.setItem(URSI_AUTOSAVE_KEY, JSON.stringify(data));
+      setMemoryStatus('Οι αλλαγές αποθηκεύτηκαν αυτόματα τοπικά.');
+    } catch(e) {}
+  }, 600);
+}
+
+function tryRestoreAutoSave(){
+  try {
+    const raw = localStorage.getItem(URSI_AUTOSAVE_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    const hasUsefulData = data && Array.isArray(data.fields) && data.fields.some(item => {
+      return (item.id === 'cityName' || item.id === 'regionName' || item.id === 'assessmentYear') && item.value;
+    });
+    if(!hasUsefulData) return;
+    const ok = confirm('Βρέθηκε προσωρινά αποθηκευμένη αξιολόγηση στον browser. Θέλεις να τη φορτώσω;');
+    if(ok){ restoreAssessment(data); setMemoryStatus('Φορτώθηκε η τελευταία αυτόματη αποθήκευση.'); }
+  } catch(e) {}
+}
+
+function exportAssessmentJSON(){
+  calculateDetailedΒαθμολογία();
+  const data = serializeAssessment();
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  const safe = makeAssessmentKey(data.label || 'URSI_assessment').replace(/[\\/:*?"<>|]/g,'_');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${safe || 'URSI_assessment'}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  setMemoryStatus('Έγινε εξαγωγή της αξιολόγησης σε JSON.');
+}
+
+function importAssessmentJSON(event){
+  const file = event.target.files && event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(){
+    try {
+      const data = JSON.parse(reader.result);
+      if(!restoreAssessment(data)) throw new Error('Invalid assessment file');
+      const label = makeAssessmentKey(data.label || currentAssessmentLabel());
+      const saved = getSavedAssessments();
+      saved[label] = { ...serializeAssessment(), label };
+      setSavedAssessments(saved);
+      refreshSavedAssessmentsSelect();
+      setMemoryStatus(`Έγινε εισαγωγή και αποθήκευση: ${label}`);
+    } catch(e){
+      setMemoryStatus('Το αρχείο JSON δεν αναγνωρίστηκε ως αξιολόγηση URSI.');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file, 'utf-8');
+}
+
+function initURSIMemory(){
+  refreshSavedAssessmentsSelect();
+  document.addEventListener('input', scheduleAutoSave);
+  document.addEventListener('change', scheduleAutoSave);
+  setTimeout(tryRestoreAutoSave, 300);
+}
+
+renderSections();
+initURSIMemory();
+
+function applyIPPrerequisiteLock(){
+  const ipCard = document.querySelector('.section-card');
+  if(!ipCard) return;
+
+  const prereqs = Array.from(ipCard.querySelectorAll('.prereq-check'));
+  const completed = prereqs.length > 0 && prereqs.every(function(ch){ return ch.checked; });
+
+  const criteriaTitle = Array.from(ipCard.querySelectorAll('.subsection-title'))
+    .find(function(el){ return el.textContent.trim().toLowerCase().includes('κριτήρια'); });
+
+  let msg = ipCard.querySelector('.ip-lock-message');
+
+  if(!completed){
+    ipCard.classList.add('ip-criteria-locked');
+
+    if(!msg && criteriaTitle){
+      msg = document.createElement('div');
+      msg.className = 'ip-lock-message';
+      msg.textContent = 'Τα κριτήρια της ενότητας IP ενεργοποιούνται μόνο όταν έχουν συμπληρωθεί όλα τα υποχρεωτικά στοιχεία.';
+      criteriaTitle.insertAdjacentElement('afterend', msg);
+    }
+
+    ipCard.querySelectorAll('.interactive-toggle').forEach(function(toggle){
+      const body = toggle.nextElementSibling;
+      if(body && body.classList.contains('interactive-body')){
+        toggle.onclick = null;
+      }
+    });
+
+    ipCard.querySelectorAll('.interactive-body input, .interactive-body textarea, .interactive-body select').forEach(function(el){
+      el.disabled = true;
+    });
+  } else {
+    ipCard.classList.remove('ip-criteria-locked');
+    if(msg) msg.remove();
+
+    ipCard.querySelectorAll('.interactive-toggle').forEach(function(toggle){
+      const body = toggle.nextElementSibling;
+      if(body && body.classList.contains('interactive-body')){
+        const id = body.id;
+        toggle.onclick = function(){ toggleInteractive(id); };
+      }
+    });
+
+    ipCard.querySelectorAll('.interactive-body input, .interactive-body textarea, .interactive-body select').forEach(function(el){
+      el.disabled = false;
+    });
+  }
+}
+
+document.addEventListener('change', function(){
+  setTimeout(applyIPPrerequisiteLock, 0);
+});
+
+document.addEventListener('click', function(){
+  setTimeout(applyIPPrerequisiteLock, 0);
+});
+
+setTimeout(applyIPPrerequisiteLock, 0);
+
+</script>
+</body>
+</html>
